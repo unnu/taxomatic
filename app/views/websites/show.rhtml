@@ -1,0 +1,72 @@
+<h1>Site-Details f&uuml;r <%= @website.name %></h1>
+
+<h4>Kunde</h4>
+
+<p>
+  <b><%= @website.client.name %></b><br />
+  <%= @website.client.address %><br />
+</p>
+
+<p>
+  Telefon <a href="callto://<%= @website.client.phone %>"><%= @website.client.phone %></a><br />
+  Email <%= mail_to @website.client.email_address %><br />
+</p>
+
+<h4>Site</h4>
+
+<p>
+Erstellt: <%= format_dmy(@website.created_on) %><br />
+Bezahlt bis: <%= format_dmy(@website.created_on.to_time.next_year - 1.day) %> (TODO: rot/gruen, bezug auf letzte rechnung!!!)
+</p>
+
+<p>
+FTP User: <%= @website.ftp_username %><br />
+FTP Passwort: <%= @website.ftp_password %><br />
+</p>
+
+<h4>Domains</h4>
+
+<table>
+<% @website.domains.sort_by { |d| d.name }.each do |domain| %>
+<tr>
+  <td><%= domain.name %></td>
+  <td><%= link_to 'l&ouml;schen', :action => :destroy %></td>
+</tr>
+<% end %>
+<tr>
+  <td colspan="2">
+  <%= link_to 'weitere domain hinzuf&uuml;gen', :controller => 'domains', :action => :new, :id => @website.id %>
+  </td>
+</tr>
+</table>
+
+<h4>Aktuelle Rechnung</h4>
+
+<table>
+  <tr>
+    <td>Hosting</td>
+    <td class="money"><%= format_euro(@website.hosting_fee_per_year) %></td>
+  </tr>
+  <% @website.domains.sort_by { |d| d.name }.each do |domain| %>
+  <tr>
+    <td>Domain <%= domain.name %></td>
+    <td class="money"><%= format_euro(domain.cost_per_year) %></td>
+  </tr>
+  <% end %>
+  <tr class="border_top">
+    <td>Netto-Betrag</td>
+    <td class="money"><%= format_euro(@total_cost_netto) %></td>
+  </tr>
+  <tr>
+    <td>USt. (<%= (UST*100).to_i %>%)</td>
+    <td class="money"><%= format_euro(@total_cost_netto * UST) %></td>
+  </tr>
+  <tr class="border_top">
+    <td><b>Rechnungsbetrag</b></td>
+    <td class="money"><b><%= format_euro(@total_cost_brutto) %></b></td>
+  </tr>
+</table>
+
+
+<p><%= link_to 'Bearbeiten', :action => 'edit', :id => @website %> |
+<%= link_to 'L&ouml;schen', { :action => 'destroy', :id => @website }, :confirm => 'Wirklich loeschen?', :post => true %></p>

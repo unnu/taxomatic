@@ -1,0 +1,8 @@
+<h1>Bearbeite Rechnung</h1>
+
+<% form_tag :action => 'update', :id => @invoice do |form| %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Speichern' %>
+<% end %>
+
+<%= link_to 'zur&uuml;ck zur Liste', :action => 'list' %>

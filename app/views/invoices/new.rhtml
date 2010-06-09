@@ -1,0 +1,8 @@
+<h1>Neue Rechnung</h1>
+
+<% form_tag :action => 'create' do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag "Erstellen" %>
+<% end %>
+
+<%= link_to 'zur&uuml;ck', :action => 'list' %>

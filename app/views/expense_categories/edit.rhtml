@@ -1,0 +1,9 @@
+<h1>Bearbeite Ausgaben-Kategorie</h1>
+
+<% form_tag :action => 'update', :id => @expense_category do |form| %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<% end %>
+
+<%= link_to 'Show', :action => 'show', :id => @expense_category %> |
+<%= link_to 'Back', :action => 'list' %>

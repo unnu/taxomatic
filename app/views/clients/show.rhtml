@@ -1,0 +1,12 @@
+<% for column in Client.content_columns %>
+<p>
+    <b><%= column.human_name %>:</b><%= simple_format(@client.send(column.name)) %>
+</p>
+<% end %>
+
+<%# @client.invoices.each do |invoice| %>
+  <%#= invoice.id %><br />
+<%# end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @client %> |
+<%= link_to 'Back', :action => 'list' %>

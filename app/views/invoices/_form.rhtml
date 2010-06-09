@@ -1,0 +1,20 @@
+<%= error_messages_for 'invoice' %>
+
+<p><label for="invoice_client">Kunde</label><br/>
+<%= active_clients_select_tag %>
+</p>
+
+<p><label for="invoice_ref_nr">Rechnungs-Nummer</label><br/>
+<%= text_field 'invoice', 'ref_nr'  %></p>
+
+<%= render :partial => 'shared/payment', :object => @invoice, :locals => { :prefix => 'invoice' } %>
+
+<p><label for="invoice_description">Beschreibung</label><br/>
+<%= text_field 'invoice', 'description'  %></p>
+
+<p><label for="payment_invoice_date">Bezahlt am</label><br/>
+<%= date_select 'invoice', 'paid_on', :order => [:day, :month, :year], :use_month_numbers => true, :include_blank => true %></p>
+
+<p><label for="invoice_ref_nr">Storniert?</label> 
+<%= check_box 'invoice', 'canceled'  %></p>
+

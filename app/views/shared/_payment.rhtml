@@ -1,0 +1,18 @@
+<%
+ # the parent template hands in local var payment, set it to 
+ # class var so that the form fields pick up the value.
+ @payment = payment 
+ %>
+<p><label for="payment_invoice_date">Datum</label><br/>
+<%= date_select prefix, 'billed_on', :order => [:day, :month, :year], :use_month_numbers => true %></p>
+
+<p><label for="payment_tax">USt</label><br/>
+<%= select prefix, :tax , tax_options, {}, {:id => 'tax'} %> <span id="tax_display"></span></p>
+
+<p><label for="payment_amount_net">Netto</label><br/>
+<%= text_field prefix, 'amount_net', {:id => 'amount_net', :onblur => 'calcGross(this.value);' } %> <b>cent!</b></p>
+
+<p><label for="payment_amount_gross">Brutto</label><br/>
+<%= text_field prefix, 'amount_gross', {:id => 'amount_gross'}  %> 
+<a href="#" tabindex="9999" onclick="calcNet(document.getElementById('amount_gross').value)">Netto berechnen</a>
+</p>

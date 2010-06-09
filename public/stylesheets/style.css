@@ -1,0 +1,228 @@
+body { background-color: #fff; color: #333; }
+
+body, p, ol, ul, th, td, textarea, input, select {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   11px;
+  line-height: 1.3em;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a,
+a:visited  { color: #666; }
+
+a:hover { color: #fff; background-color:#000; }
+
+a.client {
+  color:#000;
+  text-decoration:none;
+}
+a.client:hover {
+  color:#fff;
+}
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#ErrorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  position:absolute;
+  right:10px;
+  top:10px;
+  }
+
+#ErrorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#ErrorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#ErrorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+div.uploadStatus {
+  margin: 5px;
+}
+
+div.progressBar {
+  margin: 5px;
+}
+
+div.progressBar div.border {
+  background-color: #fff;
+  border: 1px solid grey;
+  width: 100%;
+}
+
+div.progressBar div.background {
+  background-color: #333;
+  height: 18px;
+  width: 0%;
+}
+
+h1 {
+  margin-top:20px;
+  font-size:14px;
+}
+h2 {
+  margin-top:25px;
+  font-size:12px;
+  font-variant:small-caps;
+  color:#f90;
+  border-left:14px solid #f90;
+  padding-left:5px;
+}
+table {
+  border-collapse:collapse;
+}
+th, td {
+  padding:2px;
+  padding-right:10px;
+  white-space:nowrap;
+}
+th {
+  text-align:left;
+  border-bottom:1px solid #666;
+}
+
+input, textarea {
+  border:1px solid #bbb;
+  width:300px;
+}
+textarea {
+  height:50px;
+}
+input, select, textarea
+{
+	padding:3px;
+}
+select {
+	padding-right:0px;  
+}
+#message {
+  padding:3px;
+  color:green;
+  font-weight:bold;
+  background-color:#e0eddc;
+}
+#itemslist td {
+  border-top:1px dotted #aaa;
+}
+tr.new_year td {
+  padding-top:20px;
+  border-top:1px solid #aaa;
+}
+tr.canceled td {
+  color:#aaa;
+}
+tr.border_top td {
+  border-top:1px solid #aaa;
+}
+input[type=checkbox] {
+  width:auto;
+}
+/* right align */
+td.num, th.num {
+  text-align:right;
+}
+
+/* tabselect bei ust */
+
+div#ustTables {
+  position:relative;
+  margin-top:20px;
+}
+div#tabSelector {
+    position:absolute;
+  	top:0;
+	left:11px;
+	height:27px;
+	width:550px;
+	padding-left:1px;
+}
+div#tabContainer {
+  position:absolute;
+  top:24px;
+  border-top:1px solid #999;
+  width:90%;
+  padding:10px;
+  overflow:auto;
+}
+div#tabSelector a {
+	font-family:Verdana;
+	font-size:10px;
+	font-weight:bold;
+	font-weight:bold;
+	display:block;
+	float:left;
+	padding:5px;
+	margin-left:0px;
+	margin-right:4px;
+	cursor:pointer;
+	cursor:hand;
+	color: #666;
+	border:1px solid #999;
+	border-bottom:none;
+	background-color:#eee;
+	text-decoration:none;
+	font-weight:normal;
+	position:relative;
+}
+div#tabSelector a:hover, 
+div#tabSelector a.over { 
+	height:12px;
+	color: #000;
+	border:1px solid #000;
+	border-bottom:1px solid #fff;
+	background-color:#fff;
+	z-index:1;
+  }
+td.money {
+	text-align:right;
+}
+table#websites td {
+ border-top:1px solid #bbb;
+ border-bottom:1px solid #bbb;
+}
+table#websites td.website_client {
+  font-weight:bold;
+  padding-top:20px;
+  padding-bottom:2px;
+  color:#000;
+ border:none;
+}
+
+h4 {
+  width:300px;
+  border-bottom:1px solid #000;
+}
+p#year_select .current {
+	font-weight:bold;	
+}
+tr.amortization td {
+	color:#aaa;
+}

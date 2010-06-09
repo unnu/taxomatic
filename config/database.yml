@@ -1,0 +1,9 @@
+development:
+  adapter: mysql
+  database: taxomatic
+  username: root
+
+test:
+  adapter: mysql
+  database: taxomatic_test
+  username: root

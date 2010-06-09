@@ -1,0 +1,23 @@
+<%= error_messages_for 'client' %>
+
+<!--[form:client]-->
+<p><label for="client_name">Firma</label><br/>
+<%= text_field 'client', 'name' %></p>
+
+<p><label for="client_person">Person</label><br/>
+<%= text_field 'client', 'person' %></p>
+
+<p><label for="client_email_address">Email</label><br/>
+<%= text_field 'client', 'email_address' %></p>
+
+<p><label for="client_name">Telefon</label><br/>
+<%= text_field 'client', 'phone' %></p>
+
+<p><label for="client_name">Adresse</label><br/>
+<%= text_area 'client', 'address', { 'style' => 'height:70px;' } %></p>
+
+<p><label for="client_is_active">aktiv?</label>&nbsp; 
+<%= check_box 'client', 'is_active' %></p>
+
+<!--[eoform:client]-->
+

@@ -1,0 +1,10 @@
+same_year_invoice:
+  id: 1
+  type: Invoice
+  billed_on: 2006-12-10
+  ref_nr: "01206"
+last_year_invoice:
+  id: 2
+  type: Invoice
+  billed_on: 2005-10-10
+  ref_nr: "01005"

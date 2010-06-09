@@ -1,0 +1,23 @@
+<h2>Einnahmen</h2>
+
+<table>
+  <tr>
+    <th>datum</th>
+    <th>betrag</th>
+    <th>kunde</th>
+  </tr>
+  <% for invoice in @invoices %>
+    <tr>
+      <td><%=h format_dmy(invoice.paid_on) %></td>
+      <td class="money"><%=h format_euro(invoice.amount_net) %></td>
+      <td><%=h invoice.client.name %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td>Summe Einnahmen</td>
+    <td class="money">
+      <b><%=h format_euro(@total_invoices) %></b>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+</table>

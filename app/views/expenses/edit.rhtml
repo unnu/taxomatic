@@ -1,0 +1,8 @@
+<h1>Bearbeite Ausgabe</h1>
+
+<% form_tag :action => 'update', :id => @expense do |form| %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Speichern' %>
+<% end %>
+
+<%= link_to 'zur&uuml;ck zur Liste', :action => 'list' %>

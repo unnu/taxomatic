@@ -1,0 +1,30 @@
+<html>
+<head>
+  <title>taxomatic: <%= controller.action_name %> <%= controller.controller_name %></title>
+  <script type="text/javascript" src="/javascripts/lib.js"></script>
+  <script type="text/javascript" src="/javascripts/script.js"></script>
+  <%= stylesheet_link_tag 'style' %>
+</head>
+<body onload="init();">
+
+<% if flash[:notice] != nil %>
+<p id="message"><%= flash[:notice] %></p>
+<% end %>
+
+<div id="menu1">
+	<%= link_to "Ausgaben", :controller => 'expenses', :action => 'list' %> |
+	<%= link_to "Rechnungen", :controller => 'invoices', :action => 'list' %> |
+	<%= link_to "Mahnungen", :controller => 'reminders', :action => 'list' %> |
+	<%= link_to "Hosting", :controller => 'websites', :action => 'list' %> |
+   <%= link_to "USt-Voranmeldung", :controller => 'tax', :action => 'ust' %> |
+   <%= link_to "ESt", :controller => 'est_tax', :action => 'index' %> &nbsp;&nbsp; ||| &nbsp;&nbsp;
+	config: <%= link_to "Ausgaben-Arten", :controller => 'expense_categories', :action => 'list' %> |
+	<%= link_to "Kunden", :controller => 'clients', :action => 'list' %>
+</div>
+
+<div id="list">
+	<%= @content_for_layout %>
+</div>
+
+</body>
+</html>

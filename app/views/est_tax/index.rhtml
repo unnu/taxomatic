@@ -1,0 +1,23 @@
+
+<h1>Einkommensteuer f&uuml;r <%= @year %></h1>
+
+<p id="year_select">
+  jahr w&auml;hlen: <%= year_selector(@year) %>
+</p>
+
+<%= render :partial => 'invoices' %>
+<%= render :partial => 'expenses' %>
+
+<h2>Zusammenfassung</h2>
+
+<table>
+  <tr>
+    <td>Einnahmen</td>
+    <td><%= format_euro(@total_invoices) %></td>
+  </tr>
+  <tr>
+    <td>Ausgaben</td>
+    <td class="money"><%= format_euro(@total_expenses) %></td>
+  </tr>
+  <tr>
+</table>

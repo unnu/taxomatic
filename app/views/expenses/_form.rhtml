@@ -1,0 +1,19 @@
+<%= error_messages_for 'expense' %>
+
+<script type="text/javascript">
+var category_taxes = {
+  <%= @expense_categories_taxes.map { |cat| cat.join(': ') }.join(",\n") %>
+}
+</script>
+
+<p><label for="expense_expense_category">Ausgaben-Kategorie</label><br/>
+<%= select('expense', 'expense_category_id', @expense_categories, {}, {'onchange' => 'setTax(this.value);' })  %>
+</p>
+
+<%= render :partial => 'shared/payment', :object => @expense, :locals => { :prefix => 'expense' }  %>
+
+<p><label for="expense_description">Beschreibung</label><br/>
+<%= text_field 'expense', 'description'  %></p>
+
+<p><label for="expense_ref_nr">Quittungs-Nummer</label><br/>
+<%= text_field 'expense', 'ref_nr'  %></p>

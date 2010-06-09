@@ -1,0 +1,47 @@
+<h2>Ausgaben</h2>
+
+<table>
+  
+  <tr>
+    <th>datum</th>
+    <th>summe</th>
+    <th>beschreibung</th>
+  </tr>
+
+  <% grouped_and_sorted_expenses.each do |category, expenses| %>
+
+    <tr>
+      <td><b><%=h category.name %></b></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+
+    <% for expense in expenses %>
+      <tr<%= expense.amortization? ? ' class="amortization"' : '' %>>
+        <td><%=h format_dmy(expense.paid_on) %></td>
+        <td class="money"><%=h format_euro(expense.amount_net) %></td>
+        <td><%= truncate(expense.description, :length => 40) %></td>
+      </tr>
+    <% end %>
+    
+    <tr>
+      <td>&nbsp;</td>
+      <td class="money">
+        <b><%=h format_euro(expenses.inject(0) { |sum, expense| sum += expense.amount_net }) %></b>
+      </td>
+      <td>&nbsp;</td>
+    </tr>
+    
+  <% end %>
+</table>
+
+<h2>Zusammenfassung</h2>
+
+<table>
+    <% grouped_and_sorted_expenses.each do |category, expenses| %>
+    <tr>
+      <td><%= category.name %></td>
+      <td class="money"><%=h format_euro(expenses.inject(0) { |sum, expense| sum += expense.amount_net }) %></td>
+    </tr>
+    <% end %>
+</table>

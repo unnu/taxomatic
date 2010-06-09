@@ -1,0 +1,8 @@
+<% for column in ExpenseCategory.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @expense_category.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @expense_category %> |
+<%= link_to 'Back', :action => 'list' %>

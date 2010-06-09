@@ -1,0 +1,13 @@
+<%= error_messages_for 'domain' %>
+
+<!--[form:domain]-->
+<%= hidden_field 'domain', 'website_id' %></p>
+
+<p><label for="domain_name">Name</label><br/>
+<%= text_field 'domain', 'name', {'id' => 'domain_name'}  %></p>
+
+<p><label for="domain_created_on">Created on</label><br/>
+<%= date_select 'domain', 'created_on', :order => [:day, :month, :year], :use_month_numbers => true %></p>
+
+<!--[eoform:domain]-->
+
