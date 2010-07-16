@@ -7,12 +7,17 @@ class InvoicesController < ApplicationController
   end
 
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
-    @invoices = Invoice.find(:all, :order => 'billed_on DESC', :include => :client)
+    params[:year] = Time.now.year unless params[:year]
+    @invoices = Invoice.all_for_year(params[:year]).without_canceled
+    respond_to do |wants|
+      wants.html {}
+      wants.xls do
+        data     = invoices_for_excel(@invoices).to_xls
+        filename = "invoices_#{params[:year]}.xls"
+        send_data(data, :disposition => "attachment", :filename => filename)
+      end
+    end
+    
   end
 
   def show
@@ -71,5 +76,14 @@ class InvoicesController < ApplicationController
     Invoice.find(params[:id]).destroy
     redirect_to :action => 'list'
   end
+
+  private
+  
+    def invoices_for_excel(invoices)
+      invoices.map! do |i| 
+        [i.ref_nr, i.paid_on, i.client.name, i.amount_net, i.amount_gross, i.description]
+      end
+      invoices.unshift(%w(Nummer Zahldatum Kunde Netto Brutto Beschreibung))
+    end
   
 end
