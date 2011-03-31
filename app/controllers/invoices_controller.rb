@@ -52,7 +52,7 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.new(params[:invoice])
     if @invoice.save
       flash[:notice] = 'Invoice was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to invoices_path
     else
       render :action => 'new'
     end

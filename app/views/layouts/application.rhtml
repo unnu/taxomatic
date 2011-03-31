@@ -12,8 +12,8 @@
 <% end %>
 
 <div id="menu1">
-	<%= link_to "Ausgaben", :controller => 'expenses', :action => 'list' %> |
-	<%= link_to "Rechnungen", :controller => 'invoices', :action => 'list' %> |
+	<%= link_to "Ausgaben", expenses_path %> |
+	<%= link_to "Rechnungen", invoices_path %> |
 	<%= link_to "Mahnungen", :controller => 'reminders', :action => 'list' %> |
 	<%= link_to "Hosting", :controller => 'websites', :action => 'list' %> |
    <%= link_to "USt-Voranmeldung", :controller => 'tax', :action => 'ust' %> |
