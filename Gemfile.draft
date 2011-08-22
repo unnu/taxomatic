@@ -1,0 +1,7 @@
+source "rubygems"
+# not yet used, just for tracking dependencies
+
+gem "rails", "2.3.5"
+gem "spreadsheet"
+gem "mysql2", "0.2.11"
+gem install activerecord-mysql2-adapter

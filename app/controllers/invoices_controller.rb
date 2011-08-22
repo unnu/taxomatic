@@ -66,7 +66,7 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.find(params[:id])
     if @invoice.update_attributes(params[:invoice])
       flash[:notice] = 'Invoice was successfully updated.'
-      redirect_to :action => 'index', :id => @invoice
+      redirect_to invoices_path(:id => @invoice)
     else
       render :action => 'edit'
     end
