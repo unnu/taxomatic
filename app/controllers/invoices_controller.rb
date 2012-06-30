@@ -2,10 +2,6 @@ class InvoicesController < ApplicationController
 
   before_filter :form_common, :except => [:index, :list, :show]
   
-  def form_common
-    @clients = get_clients
-  end
-
   def index
     params[:year] = Time.now.year unless params[:year]
     @invoices = Invoice.all_for_year(params[:year]).without_canceled
@@ -86,4 +82,8 @@ class InvoicesController < ApplicationController
       invoices.unshift(%w(Nummer Zahldatum Kunde Netto Brutto Beschreibung))
     end
   
+    def form_common
+      @clients = get_clients
+    end
+
 end

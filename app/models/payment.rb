@@ -3,7 +3,6 @@ class Payment < ActiveRecord::Base
   belongs_to :expense_category
 
   validates_uniqueness_of :id
-  validates_uniqueness_of :ref_nr, :allow_nil => true
   validates_presence_of :amount_net, :amount_gross, :tax, :amount_net, :billed_on
   validates_numericality_of :amount_net, :amount_gross, :tax
   validates_inclusion_of :tax, :in => [0, 7, 16, 19]

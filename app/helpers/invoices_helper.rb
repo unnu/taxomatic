@@ -1,5 +1,12 @@
 module InvoicesHelper
 
+  def year_selector
+    Invoice.find_years_with_expenses.map do |y| 
+      text = (y == params[:year]) ? "<b>#{y}</b>" : y
+      link_to(text, expenses_for_year_path(:year => y))
+    end.join(' ')
+  end
+  
   def row_css(invoice, last_month, last_year)
     klass = []
     if (invoice.billed_on.year != last_year)
