@@ -4,8 +4,6 @@
 # (Use only when you can't set environment variables through your web/app server)
 # ENV['RAILS_ENV'] ||= 'production'
 
-RAILS_GEM_VERSION = '2.3.11'
-
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
@@ -40,7 +38,7 @@ Rails::Initializer.run do |config|
 
   # See Rails::Configuration for more options
   
-  config.action_controller.session = { :session_key => "_taxomatic_session", :secret => "holla die waldfee trinkt gern grünen tee und rennt im schnee" }
+  config.action_controller.session = { :key => "_taxomatic_session", :secret => "holla die waldfee trinkt gern grünen tee und rennt im schnee" }
   
 end
 
