@@ -1,4 +1,4 @@
-<h1>Site-Details f&uuml;r <%= @website.name %></h1>
+<h1>Site-Details für <%= @website.name %></h1>
 
 <h4>Kunde</h4>
 
@@ -30,12 +30,12 @@ FTP Passwort: <%= @website.ftp_password %><br />
 <% @website.domains.sort_by { |d| d.name }.each do |domain| %>
 <tr>
   <td><%= domain.name %></td>
-  <td><%= link_to 'l&ouml;schen', :action => :destroy %></td>
+  <td><%= link_to 'löschen', :action => :destroy %></td>
 </tr>
 <% end %>
 <tr>
   <td colspan="2">
-  <%= link_to 'weitere domain hinzuf&uuml;gen', :controller => 'domains', :action => :new, :id => @website.id %>
+  <%= link_to 'weitere domain hinzufügen', :controller => 'domains', :action => :new, :id => @website.id %>
   </td>
 </tr>
 </table>
@@ -69,4 +69,4 @@ FTP Passwort: <%= @website.ftp_password %><br />
 
 
 <p><%= link_to 'Bearbeiten', :action => 'edit', :id => @website %> |
-<%= link_to 'L&ouml;schen', { :action => 'destroy', :id => @website }, :confirm => 'Wirklich loeschen?', :post => true %></p>
+<%= link_to 'Löschen', { :action => 'destroy', :id => @website }, :confirm => 'Wirklich loeschen?', :post => true %></p>

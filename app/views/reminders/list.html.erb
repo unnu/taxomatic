@@ -19,7 +19,7 @@
     <td><%=h format_dmy(reminder.created_on) %></td>
         
     <td><%= link_to 'bearbeiten', :action => 'edit', :id => reminder %></td>
-    <td><%= link_to 'l&ouml;schen', { :action => 'destroy', :id => reminder }, :confirm => 'Wirklich loeschen?' %></td>
+    <td><%= link_to 'löschen', { :action => 'destroy', :id => reminder }, :confirm => 'Wirklich loeschen?' %></td>
   </tr>
 <% end %>
 </table>

@@ -3,9 +3,9 @@ module InvoicesHelper
   def year_selector
     current_year = Date.today.year
     ((current_year-5)..(current_year)).to_a.map do |y| 
-      text = (y == params[:year].to_i) ? "<b>#{y}</b>" : y
-      link_to(text, invoices_for_year_path(:year => y))
-    end.join(' ')
+      text = (y == params[:year].to_i) ? "<b>#{y}</b>".html_safe : y
+      link_to(text, invoices_for_year_path(:year => y)).html_safe
+    end.join(' ').html_safe
   end
   
   def row_css(invoice, last_month, last_year)
