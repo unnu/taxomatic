@@ -1,9 +1,10 @@
 module InvoicesHelper
 
   def year_selector
-    Invoice.find_years_with_expenses.map do |y| 
-      text = (y == params[:year]) ? "<b>#{y}</b>" : y
-      link_to(text, expenses_for_year_path(:year => y))
+    current_year = Date.today.year
+    ((current_year-5)..(current_year)).to_a.map do |y| 
+      text = (y == params[:year].to_i) ? "<b>#{y}</b>" : y
+      link_to(text, invoices_for_year_path(:year => y))
     end.join(' ')
   end
   
