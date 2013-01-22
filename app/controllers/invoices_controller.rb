@@ -21,21 +21,7 @@ class InvoicesController < ApplicationController
   end
 
   def new
-    if params[:website_id].nil?
-      @invoice = Invoice.new
-    else
-      @invoice = Invoice.new
-      # jaja ugly, referenz nochmal reinpacken
-      website = Website.find(params[:website_id])
-      #@invoice.website = website
-      @invoice.website_id = website.id
-      @invoice.client  = Client.find(website.client.id)
-      @invoice.tax = 16
-      @invoice.amount_net = website.total_cost_per_year.to_i
-      @invoice.amount_gross = (website.total_cost_per_year * (1 + UST)).to_i
-      @invoice.description = 'Webhosting %02d.%d-%02d.%d' % 
-        [ website.created_on.month, Time.new.year, (website.created_on.month % 12)-1, Time.new.year + 1]
-    end
+    @invoice = Invoice.new
   end
 
   def new_from_template

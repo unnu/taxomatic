@@ -63,16 +63,3 @@ module Git
 end
 
 TAX_NR = "112/256/30560"
-  
-# encapsulate in method, use UST constant
-DOMAIN_FEES = {
-  :de  => 99 * 1/1.16,
-  :com => 149 * 1/1.16,
-  # how to reference com element?
-  :net => 149 * 1/1.16,
-  :org => 149 * 1/1.16,
-  :eu  => 149 * 1/1.16,
-  :at  => 199 * 1/1.16
-}
-
-UST = 0.16

@@ -204,17 +204,6 @@ div#tabSelector a.over {
 td.money {
 	text-align:right;
 }
-table#websites td {
- border-top:1px solid #bbb;
- border-bottom:1px solid #bbb;
-}
-table#websites td.website_client {
-  font-weight:bold;
-  padding-top:20px;
-  padding-bottom:2px;
-  color:#000;
- border:none;
-}
 
 h4 {
   width:300px;

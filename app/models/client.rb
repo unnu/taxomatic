@@ -4,7 +4,6 @@ class Client < ActiveRecord::Base
   validates_numericality_of :harvest_client_id, :allow_nil => true
   
   has_many :invoices
-  has_many :websites
   
   scope :active, :conditions => {:is_active => true}, :order => :name
   

@@ -14,13 +14,12 @@ html
         = flash[:notice]
         
     #menu1
-      = link_to "Ausgaben", expenses_path
-      = link_to "Rechnungen", invoices_path
-      = link_to "Hosting", controller: 'websites', action: 'list'
-      = link_to "USt-Voranmeldung", controller: 'tax', action: 'ust'
-      = link_to "ESt", controller: 'est_tax', action: 'index'
-      = link_to "Ausgaben-Arten", controller: 'expense_categories', action: 'list'
-      = link_to "Kunden", controller: 'clients', action: 'list'
+      = link_to("Ausgaben", expenses_path) + " | "
+      = link_to("Rechnungen", invoices_path) + " | "
+      = link_to("USt-Voranmeldung", controller: 'tax', action: 'ust') + " | "
+      = link_to("ESt", controller: 'est_tax', action: 'index') + " | "
+      = link_to("Ausgaben-Arten", controller: 'expense_categories', action: 'list') + " | "
+      = link_to("Kunden", controller: 'clients', action: 'list')
     
     #list
       = yield

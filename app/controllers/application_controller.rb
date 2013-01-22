@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   protected
   
-    # used in invoice and website controller
+    # used in invoice controller
     def get_clients
       client = Client.all(:order => 'name')
       client.unshift(Client.new(:id => 0, :name => '--- Bitte waehlen ---'))
