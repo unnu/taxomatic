@@ -47,7 +47,6 @@ class Payment < ActiveRecord::Base
     def find_all_by_months(months, year = Time.now.year)
       items = []
       months.each do |month|
-        logger.debug(">>>>>>>>> #{year} #{month}")
         start_date = Time.mktime(year, month)
         end_date   = start_date.end_of_month
         # every child class has a different month_selection_field method 
