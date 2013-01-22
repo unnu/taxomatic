@@ -20,6 +20,8 @@ module Harvest
           if invoice
             puts "Invoice #{harvest_invoice.ref_nr} is already in the system."
           else
+            p harvest_invoice
+            
             puts "Importing invoice #{harvest_invoice.ref_nr} from Harvest."
             invoice = ::Invoice.create_from_harvest!(harvest_invoice)
           end

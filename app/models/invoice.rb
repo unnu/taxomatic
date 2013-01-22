@@ -25,7 +25,7 @@ class Invoice < Payment
       self.create!(
         :ref_nr => api_object.number,
         :amount_gross => api_object.amount_gross,
-        :amount_net => (api_object.amount_gross / (100 + api_object.tax_rate)) * 100  ,
+        #:amount_net => (api_object.amount_gross / (100 + api_object.tax_rate)) * 100,
         :billed_on => api_object.issued_at,
         # currently only paid invoices are imported
         :paid_on => api_object.issued_at,
