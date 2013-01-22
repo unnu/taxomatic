@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_charset
 
   def set_charset
-    headers['Content-Type'] = 'text/html; charset=UTF-8'
+    headers['Content-Type'] = 'text/html; charset=Windows-1252'
   end
 
   protected
