@@ -5,7 +5,7 @@ gem 'rake'
 gem 'harvested'
 gem 'mysql2'
 gem 'rails', '~> 3'
-gem "money"
+gem "money-rails"
 gem "jquery-rails"
 
 #gem 'jquery-rails'
