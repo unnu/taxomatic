@@ -1,0 +1,26 @@
+doctype html
+html
+
+  head
+    title taxomatic: #{controller.action_name} #{controller.controller_name}
+    meta name="charset" content="utf-8"
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+
+  body onload="init();"
+    - if (flash[:notice] != nil)
+      p id="message"
+        = flash[:notice]
+        
+    #menu1
+      = link_to "Ausgaben", expenses_path
+      = link_to "Rechnungen", invoices_path
+      = link_to "Hosting", controller: 'websites', action: 'list'
+      = link_to "USt-Voranmeldung", controller: 'tax', action: 'ust'
+      = link_to "ESt", controller: 'est_tax', action: 'index'
+      = link_to "Ausgaben-Arten", controller: 'expense_categories', action: 'list'
+      = link_to "Kunden", controller: 'clients', action: 'list'
+    
+    #list
+      = yield
