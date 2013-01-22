@@ -1,5 +1,8 @@
 class Client < ActiveRecord::Base
+  
   validates_uniqueness_of :id, :name
+  validates_numericality_of :harvest_client_id, :allow_nil => true
+  
   has_many :invoices
   has_many :websites
   

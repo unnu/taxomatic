@@ -3,7 +3,7 @@ class Payment < ActiveRecord::Base
   belongs_to :expense_category
 
   validates_uniqueness_of :id
-  validates_presence_of :amount_net, :amount_gross, :tax, :amount_net, :billed_on
+  validates_presence_of :amount_net, :amount_gross, :tax, :billed_on
   validates_numericality_of :amount_net, :amount_gross, :tax
   validates_inclusion_of :tax, :in => [0, 7, 16, 19]
 
@@ -23,8 +23,13 @@ class Payment < ActiveRecord::Base
   # zusammenhang von netto, brutto & ust-satz checken.
   def validate_tax_calculation
     return if [amount_gross, amount_net, tax].any? { |val| val == nil }
-    #logger.debug("%s %s %s %s" % [amount_gross, amount_net, (1 + tax.to_f/100), (amount_net * (1 + tax.to_f/100))])
-    if amount_gross != (amount_net * (1 + tax.to_f/100)).round
+    amount_tax = (amount_net * (tax.to_f/100))
+    puts "amount_net #{amount_net}"
+    puts "tax #{tax}"
+    puts "amount_tax #{amount_tax}"
+    expected_amount_gross = (amount_net + amount_tax).round
+    p expected_amount_gross
+    if (amount_gross != expected_amount_gross)
         errors.add_to_base('Die Berechnung von Netto-, Bruttobetrag und USt stimmt nicht.')
     end   
   end

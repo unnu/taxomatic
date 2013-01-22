@@ -21,6 +21,20 @@ class Invoice < Payment
     def month_selection_field
       'paid_on'
     end
+    
+    def create_from_harvest!(api_object)
+      self.create!(
+        :ref_nr => api_object.number,
+        :amount_gross => api_object.amount_gross,
+        :amount_net => (api_object.amount_gross / (100 + api_object.tax_rate)) * 100  ,
+        :billed_on => api_object.issued_at,
+        # currently only paid invoices are imported
+        :paid_on => api_object.issued_at,
+        :description => api_object.subject,
+        :client => Client.find_by_harvest_client_id(api_object.client_id),
+        :tax => api_object.tax_rate
+      )
+    end
   end
 
   protected

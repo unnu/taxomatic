@@ -10,11 +10,8 @@
 <p><label for="client_email_address">Email</label><br/>
 <%= text_field 'client', 'email_address' %></p>
 
-<p><label for="client_name">Telefon</label><br/>
-<%= text_field 'client', 'phone' %></p>
-
-<p><label for="client_name">Adresse</label><br/>
-<%= text_area 'client', 'address', { 'style' => 'height:70px;' } %></p>
+<p><label for="client_name">Harvest client id</label><br/>
+<%= text_field 'client', 'harvest_client_id' %></p>
 
 <p><label for="client_is_active">aktiv?</label>&nbsp; 
 <%= check_box 'client', 'is_active' %></p>
