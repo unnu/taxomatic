@@ -34,7 +34,7 @@
     <td class="money"><%=h format_euro(invoice.amount_net) %></td>
     <td class="money"><%=h format_euro(invoice.amount_gross) %></td>
     <td><%=h invoice.tax %>%</td>
-    <td><%=h truncate(invoice.description, 50) %></td>
+    <td><%=h truncate(invoice.description, :length => 50) %></td>
     <td><%=h invoice.tax_declaration_id %></td>
         
     <td><%= link_to 'bearbeiten', :action => 'edit', :id => invoice %></td>
