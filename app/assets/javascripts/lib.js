@@ -1,5 +1,5 @@
 /**
- * projektunabhängige library mit hilfsfunktionen.
+ * projektunabhÃ¤ngige library mit hilfsfunktionen.
  * projektspezifisches bitte nach project.js !!!
  *
  */
@@ -8,16 +8,16 @@ var gecko = (navigator.userAgent.indexOf("Gecko")!=(-1)) ? true : false;
 var ie    = document.all ? true : false;
 
 /**
- * browserunabhängig einen event-handler für ein DOM-Element registrieren
+ * browserunabhÃ¤ngig einen event-handler fÃ¼r ein DOM-Element registrieren
  *
- * @param ele referenz auf das element fur das der handler registiert werden soll (ohne anführungszeichen übergeben)
+ * @param ele referenz auf das element fur das der handler registiert werden soll (ohne anfÃ¼hrungszeichen Ã¼bergeben)
  * @param ev string das event auf das die func aufgerufen werden soll
- * @param func funktion die beim eintreten des events auszuführende funktion (ohne anführungszeichen übergeben)
+ * @param func funktion die beim eintreten des events auszufÃ¼hrende funktion (ohne anfÃ¼hrungszeichen Ã¼bergeben)
  * @return
  */
 function addEvent(ele, ev, func) {
    if (ele == null) {
-      //alert('fehler beim hinzufügen von event-handler:\n event "'+ ev +'", \nfunktion "' + func + '"');
+      //alert('fehler beim hinzufÃ¼gen von event-handler:\n event "'+ ev +'", \nfunktion "' + func + '"');
       return false;
    }
    if (document.attachEvent)
@@ -38,11 +38,11 @@ function addEvent(ele, ev, func) {
 }
 
 /**
- * browserunabhängig einen event-handler für ein DOM-Element wieder entfernen
+ * browserunabhÃ¤ngig einen event-handler fÃ¼r ein DOM-Element wieder entfernen
  *
- * @param ele referenz auf das element fur das der handler registiert werden soll (ohne anführungszeichen übergeben)
+ * @param ele referenz auf das element fur das der handler registiert werden soll (ohne anfÃ¼hrungszeichen Ã¼bergeben)
  * @param ev string das event auf das die func aufgerufen werden soll
- * @param func funktion die beim eintreten des events auszuführende funktion (ohne anführungszeichen übergeben)
+ * @param func funktion die beim eintreten des events auszufÃ¼hrende funktion (ohne anfÃ¼hrungszeichen Ã¼bergeben)
  * @return
  */
 function removeEvent(ele, ev, func) {
@@ -77,7 +77,7 @@ function cancelEventBubble(e)
 }
 
 /**
- * fenstergröße browserübergreifend feststellen
+ * fenstergrÃ¶ÃŸe browserÃ¼bergreifend feststellen
  * @return Object {width: w, height:h}
  */
 function getWinSize()
@@ -119,7 +119,7 @@ function setWinSize(newSize)
 /**
  * von nodeRef im dom nach oben hangeln bis ich einen
  * node mit namen ancestorNodeName gefunden habe;
- * dann diesen zurückgeben
+ * dann diesen zurÃ¼ckgeben
  */
 function getFirstAncestor(nodeRef, ancestorNodeName)
 {
@@ -169,7 +169,7 @@ function printfire()
 }
 
 /**
- * eine anwendung in einem neuen fenster (möglichst groß, ohne url-leiste, status-leiste und scrollbar) öffnen
+ * eine anwendung in einem neuen fenster (mÃ¶glichst groÃŸ, ohne url-leiste, status-leiste und scrollbar) Ã¶ffnen
  *
  */
 function openAppWindow(url, winWidth, winHeight, winName)
@@ -189,7 +189,7 @@ function openAppWindow(url, winWidth, winHeight, winName)
    var newAppRequiredOuterWidth = newAppRequiredInnerWidth + 2*margin + 2*border;
    var newAppRequiredOuterHeight = newAppRequiredInnerHeight + 2*margin + 2*border + titlebar;
 
-   //  fenster in genau der benöigten größe öffnen, keine scrollbars
+   //  fenster in genau der benÃ¶igten grÃ¶ÃŸe Ã¶ffnen, keine scrollbars
    var newWinWidth = newAppRequiredInnerWidth;
    var newWinHeight = newAppRequiredInnerHeight;
    var options = "scrollbars=no, resizable=yes, width="+newWinWidth+", height="+newWinHeight+", top="+margin+", left="+margin;
