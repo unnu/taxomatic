@@ -3,12 +3,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :expenses
   map.resources :invoices
   
-  map.expenses_for_year 'expenses/list/:year', :controller => 'expenses'
-  map.invoices_for_year 'invoices/list/:year', :controller => 'invoices'
+  match 'expenses/list/:year' => 'expenses#index', :as => 'expenses_for_year'
+  match 'invoices/list/:year' => 'invoices#index', :as => 'invoices_for_year'
   
-  # Install the default route as the lowest priority.
-  map.connect ':controller/:action/:id'
-
-
-  map.root :controller => 'tax', :action => 'ust'
+  root :to => "tax#ust"
+  match "/:controller(/:action(/:id))(.:format)"
 end
