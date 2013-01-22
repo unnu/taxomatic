@@ -6,11 +6,15 @@ module Harvest
     end
     
     def amount_net
-      (amount_gross - tax)
+      (amount_gross - amount_tax)
     end
     
     def amount_gross
       to_cents(@api_object.amount)
+    end
+    
+    def amount_tax
+      to_cents(@api_object.tax_amount)
     end
     
     def tax_rate

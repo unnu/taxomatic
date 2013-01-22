@@ -18,10 +18,8 @@ module Harvest
         if harvest_invoice.paid? 
           invoice = ::Invoice.find_by_ref_nr(harvest_invoice.ref_nr)
           if invoice
-            puts "Invoice #{harvest_invoice.ref_nr} is already in the system."
+            puts "Harvest invoice #{harvest_invoice.ref_nr} is already in the system."
           else
-            p harvest_invoice
-            
             puts "Importing invoice #{harvest_invoice.ref_nr} from Harvest."
             invoice = ::Invoice.create_from_harvest!(harvest_invoice)
           end

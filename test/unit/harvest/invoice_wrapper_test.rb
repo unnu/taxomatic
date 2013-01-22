@@ -29,6 +29,11 @@ class Harvest::InvoiceWrapperTest < Test::Unit::TestCase
     assert_equal 4210, Harvest::InvoiceWrapper.new(api_object).amount_gross
   end
   
+  def test_amount_net
+    api_object = OpenStruct.new(:amount => "42.10", :tax_amount => "2.10")
+    assert_equal 4000, Harvest::InvoiceWrapper.new(api_object).amount_net
+  end
+
   def test_paid_state
     api_object = OpenStruct.new(:state => "paid")
     assert_equal true, Harvest::InvoiceWrapper.new(api_object).paid?

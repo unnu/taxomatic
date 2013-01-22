@@ -4,7 +4,7 @@
   <tr>
     <th>nr</th>
     <th>firma</th>
-    <th>name</th>
+    <th>harvest id</th>
     <th colspan="3">&nbsp;</th>
   </tr>
   
@@ -12,7 +12,7 @@
   <tr<%= client.is_active ? '' : ' class="canceled"' %>>
     <td><%=h client.id %></td>
     <td><%=h client.name %></td>
-    <td><%=h client.person %></td>
+    <td><%=h client.harvest_client_id %></td>
     <td><%= link_to 'bearbeiten', :action => 'edit', :id => client %></td>
     <td><%= link_to 'anzeigen', :action => 'show', :id => client %></td>
     <td><%= link_to 'löschen', { :action => 'destroy', :id => client }, :confirm => 'Are you sure?' %></td>

@@ -166,7 +166,7 @@ div#tabSelector {
 }
 div#tabContainer {
   position:absolute;
-  top:24px;
+  top:29px;
   border-top:1px solid #999;
   width:90%;
   padding:10px;
@@ -194,7 +194,7 @@ div#tabSelector a {
 }
 div#tabSelector a:hover, 
 div#tabSelector a.over { 
-	height:12px;
+	height:17px;
 	color: #000;
 	border:1px solid #000;
 	border-bottom:1px solid #fff;

@@ -11,7 +11,8 @@ class InvoiceTest < Test::Unit::TestCase
     invoice_wrapper = OpenStruct.new(
       :number => "001122", 
       :amount_gross => 4200,
-      :tax_rate => 19,
+      :tax_rate => "19",
+      :tax_amount => "200",
       :issued_at => "2012-08-16",
       :client_id => 42
     )
@@ -21,6 +22,6 @@ class InvoiceTest < Test::Unit::TestCase
     assert_equal 19, invoice.tax
     assert_equal Date.parse("2012-08-16"), invoice.billed_on
     assert_equal @client, invoice.client
-    #assert_equal 4000, invoice.amount_net
+    assert_equal 4000, invoice.amount_net
   end
 end
