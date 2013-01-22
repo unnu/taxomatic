@@ -6,7 +6,7 @@ class Client < ActiveRecord::Base
   has_many :invoices
   has_many :websites
   
-  named_scope :active, :conditions => {:is_active => true}, :order => :name
+  scope :active, :conditions => {:is_active => true}, :order => :name
   
   # if you're strict you'll complain ... this is view code.
   # alternatives: helper; TextHelper#simple_format

@@ -5,7 +5,7 @@ class Expense < Payment
   validates_presence_of :expense_category_id
   belongs_to :expense_category
    
-  named_scope :all_for_year, lambda { |year|
+  scope :all_for_year, lambda { |year|
     { :conditions => ['YEAR(billed_on) = ?', year], :order => 'billed_on DESC', :include => :expense_category }
   }
 
