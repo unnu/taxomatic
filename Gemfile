@@ -14,5 +14,5 @@ group :development do
 end
 
 group :test do
-  gem 'fuubar'
+  gem 'turn'
 end
