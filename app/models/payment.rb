@@ -2,46 +2,15 @@ class Payment < ActiveRecord::Base
 
   belongs_to :expense_category
 
-  validates_uniqueness_of :id
   validates_presence_of :amount_net, :amount_gross, :tax, :billed_on
   validates_numericality_of :amount_net, :amount_gross, :tax
   validates_inclusion_of :tax, :in => [0, 7, 16, 19]
+  validate :amounts_and_tax_calculation_must_be_correct
+  validate :dates_must_be_plausible
 
-  # more convenient access (shorter name)
+  # more convenient access
   alias :category :expense_category
-  
-  # :TODO: did not work as fix for "id already exists" bug
-  def before_validation
-    @ref_nr = nil if @ref_nr == ''
-  end
-  
-  def validate
-    validate_tax_calculation
-    validate_dates_plausibility
-  end
-  
-  # zusammenhang von netto, brutto & ust-satz checken.
-  def validate_tax_calculation
-    return if [amount_gross, amount_net, tax].any? { |val| val == nil }
-    amount_tax = (amount_net * (tax.to_f/100))
-    puts "amount_net #{amount_net}"
-    puts "tax #{tax}"
-    puts "amount_tax #{amount_tax}"
-    expected_amount_gross = (amount_net + amount_tax).round
-    p expected_amount_gross
-    if (amount_gross != expected_amount_gross)
-        errors.add_to_base('Die Berechnung von Netto-, Bruttobetrag und USt stimmt nicht.')
-    end   
-  end
-  
-  # bezahlt datum muss nach dem erstell-datum liegen
-  def validate_dates_plausibility
-    return if paid_on == nil
-    if billed_on > paid_on
-        errors.add_to_base('Das Bezahlungs-Datum liegt vor dem Rechnungs-Datum.')
-    end
-  end
-  
+
   class << self
     # :TODO: performanter mit 1 query, aus der months-range start & end monat extrahieren
     def find_all_by_months(months, year = Time.now.year)
@@ -76,5 +45,24 @@ class Payment < ActiveRecord::Base
   def amount_net_euro
     "%.2f" % (amount_net / 100.to_f)
   end 
+  
+  private
+  
+    def amounts_and_tax_calculation_must_be_correct
+      return if [amount_gross, amount_net, tax].any? { |val| val == nil }
+      amount_tax = (amount_net * (tax.to_f/100))
+      expected_amount_gross = (amount_net + amount_tax).round
+      if (amount_gross != expected_amount_gross)
+        errors[:base] << 'Die Berechnung von Netto-, Bruttobetrag und USt stimmt nicht.'
+      end
+    end
+    
+    def dates_must_be_plausible
+      return if paid_on == nil
+      if billed_on > paid_on
+          errors[:base] << 'Das Bezahlungs-Datum liegt vor dem Rechnungs-Datum.'
+      end
+    end
+  
   
 end

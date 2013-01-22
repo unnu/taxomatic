@@ -9,7 +9,7 @@ class PaymentTest < Test::Unit::TestCase
       :tax => 19
     )
     payment.valid? 
-    assert_equal nil, payment.errors[:base]
+    assert payment.errors[:base].empty?
   end
 
   def test_validate_tax_calculation_ok_2
@@ -19,7 +19,7 @@ class PaymentTest < Test::Unit::TestCase
       :tax => 19
     )
     payment.valid? 
-    assert_equal nil, payment.errors[:base]
+    assert payment.errors[:base].empty?
   end
 
   def test_validate_tax_calculation_invalid
@@ -28,7 +28,7 @@ class PaymentTest < Test::Unit::TestCase
       :amount_gross => 100,
       :tax => 19
     )
-    assert_equal false, payment.valid? 
-    assert_equal "Die Berechnung von Netto-, Bruttobetrag und USt stimmt nicht.", payment.errors[:base]
+    assert !payment.valid? 
+    assert_equal ["Die Berechnung von Netto-, Bruttobetrag und USt stimmt nicht."], payment.errors[:base]
   end
 end
