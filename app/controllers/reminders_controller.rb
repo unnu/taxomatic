@@ -6,7 +6,7 @@ class RemindersController < ApplicationController
   end
 
   def list
-    @reminders = Reminder.find(:all, :order => 'created_on DESC')
+    @reminders = Reminder.all(:order => 'created_on DESC')
   end
 
   def show

@@ -6,7 +6,7 @@ class ExpenseCategoriesController < ApplicationController
   end
 
   def list
-    @expense_categories = ExpenseCategory.find(:all, :order => 'name')
+    @expense_categories = ExpenseCategory.all(:order => 'name')
   end
 
   def show

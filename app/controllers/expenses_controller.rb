@@ -72,13 +72,13 @@ class ExpensesController < ApplicationController
   private
   
     def get_expense_categories
-      cats = ExpenseCategory.find(:all, :order => 'name')
+      cats = ExpenseCategory.all(:order => 'name')
       cats.unshift(ExpenseCategory.new(:id => 0, :name => '--- Bitte waehlen ---'))
       cats.map { |cat| [cat.name, cat.id]}
     end
     
     def get_expense_categories_taxes
-      cats = ExpenseCategory.find(:all, :order => 'name')
+      cats = ExpenseCategory.all(:order => 'name')
       cats.map { |cat| [cat.id,  cat.default_tax]}
     end
     

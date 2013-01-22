@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   
     # used in invoice and website controller
     def get_clients
-      client = Client.find(:all, :order => 'name')
+      client = Client.all(:order => 'name')
       client.unshift(Client.new(:id => 0, :name => '--- Bitte waehlen ---'))
       client.map {|c| [c.name, c.id]}
     end

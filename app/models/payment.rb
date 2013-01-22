@@ -52,14 +52,13 @@ class Payment < ActiveRecord::Base
         # every child class has a different month_selection_field method 
         f = self.month_selection_field
         condition  = [('%s >= ? AND %s <= ?') % [f, f], start_date, end_date]
-        items << self.find(:all, :conditions => condition, :order => f)
+        items << self.all(:conditions => condition, :order => f)
       end
       items.flatten
     end
   
     def paid_in_year(year)
-      find(:all, 
-        :conditions => [
+      self.all(:conditions => [
           'paid_on >= ? AND paid_on <= ?', 
           Time.utc(year).at_beginning_of_year, 
           Time.utc(year).next_year - 1.day # at_end_of_year not in my rails version

@@ -5,7 +5,7 @@ class ClientsController < ApplicationController
   end
 
   def list
-    @clients = Client.find(:all)
+    @clients = Client.all
   end
 
   def show
