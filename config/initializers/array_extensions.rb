@@ -1,5 +1,3 @@
-#require 'spreadsheet'
-
 class Array
   def except(*items)
     self.reject { |item| items.include?(item) }

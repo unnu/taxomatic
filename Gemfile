@@ -8,8 +8,6 @@ gem 'rails', '~> 3'
 gem "money-rails"
 gem "jquery-rails"
 
-#gem 'jquery-rails'
-
 group :test do
   gem 'redgreen'
 end
