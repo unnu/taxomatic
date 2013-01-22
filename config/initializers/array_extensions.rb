@@ -1,4 +1,4 @@
-require 'spreadsheet'
+#require 'spreadsheet'
 
 class Array
   def except(*items)
