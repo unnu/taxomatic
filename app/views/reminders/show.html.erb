@@ -1,8 +1,0 @@
-<% for column in Reminder.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%=h @reminder.send(column.name) %>
-</p>
-<% end %>
-
-<%= link_to 'Edit', :action => 'edit', :id => @reminder %> |
-<%= link_to 'Back', :action => 'list' %>

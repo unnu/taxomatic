@@ -23,13 +23,7 @@
   <tr<%= row_css(invoice, last_month, last_year) %>>
     <td><%=h invoice.ref_nr %></td>
     <td><%=h format_dmy(invoice.billed_on) %></td>
-    <td>
-    <% if invoice.paid_on != nil %>
-      <%= format_dmy(invoice.paid_on) %>
-    <% elsif invoice.reminders.length > 0 %>
-      <%= link_to 'M', {:controller => 'reminders', :action => 'edit', :id => invoice.reminders.first.id}, {'title' => 'gemahnt am ' + format_dmy(invoice.reminders.first.created_on) } %>
-    <% end %>
-    </td>
+    <td><%= format_dmy(invoice.paid_on) %></td>
     <td><%=h invoice.client.name %></td>
     <td class="money"><%=h format_euro(invoice.amount_net) %></td>
     <td class="money"><%=h format_euro(invoice.amount_gross) %></td>

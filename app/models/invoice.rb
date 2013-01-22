@@ -1,7 +1,6 @@
 class Invoice < Payment
 
   belongs_to :client
-  has_many :reminders
   
   validates_presence_of :client_id
 
