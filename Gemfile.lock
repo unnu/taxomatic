@@ -54,6 +54,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.19)
+    minitest (4.4.0)
     money (5.1.0)
       i18n (~> 0.6.0)
     money-rails (0.7.1)
@@ -122,6 +123,7 @@ PLATFORMS
 DEPENDENCIES
   harvested
   jquery-rails
+  minitest
   money-rails
   mysql2
   rails (~> 3)
