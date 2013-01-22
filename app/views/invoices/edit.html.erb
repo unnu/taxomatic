@@ -1,6 +1,6 @@
 <h1>Bearbeite Rechnung</h1>
 
-<% form_for @invoice do |form| %>
+<%= form_for @invoice do |form| %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Speichern' %>
 <% end %>

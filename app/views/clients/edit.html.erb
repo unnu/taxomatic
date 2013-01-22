@@ -1,6 +1,6 @@
 <h1>Editing client</h1>
 
-<% form_tag :action => 'update', :id => @client do |form| %>
+<%= form_tag :action => 'update', :id => @client do |form| %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Speichern' %>
 <% end %>

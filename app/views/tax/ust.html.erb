@@ -1,6 +1,6 @@
 <h1>Umsatzsteuer-Voranmeldung</h1>
 
-<% form_tag({:action => 'ust'}, {:onchange => 'submit();'}) do |form| %>
+<%= form_tag({:action => 'ust'}, {:onchange => 'submit();'}) do |form| %>
 
 <%#= select_month(@months.first, :add_month_numbers => true) %>
 <%= select_tag("date[quarter]", options_for_select([%w(Q1 1), %w(Q2 2), %w(Q3 3), %w(Q4 4)], @quarter), options = {}) %>
