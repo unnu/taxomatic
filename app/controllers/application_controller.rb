@@ -2,6 +2,7 @@
 # Likewise, all the methods added will be available for all controllers.
 class ApplicationController < ActionController::Base
 
+  protect_from_forgery
   before_filter :set_charset
 
   def set_charset
