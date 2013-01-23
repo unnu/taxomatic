@@ -1,3 +1,5 @@
+require 'digest/md5'
+
 module Outbank
   
   # 
@@ -42,7 +44,14 @@ module Outbank
     end
     
     def method_missing(arg)
+      super unless ATTRIBUTE_MAPPING.keys.include?(arg)
       @row.send(:[], ATTRIBUTE_MAPPING[arg])
     end
+    
+    def unique_id
+      unique_string = [amount, booked_on, description].join('-')
+      Digest::MD5.hexdigest(unique_string)
+    end
+    
   end
 end

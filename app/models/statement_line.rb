@@ -8,6 +8,9 @@ class StatementLine < Payment
   # amount_net is calculated when the StatementLine is converted into a payment
   validates_numericality_of :expense_category_id
   
+  # this is a (hopefully) unique identifier for this record's source line in outbank
+  validates_presence_of :outbank_unique_id
+  
   class << self
     def create_from_outbank_line!(line)
       self.create!(
@@ -17,8 +20,10 @@ class StatementLine < Payment
         :amount_gross => line.amount,
         :billed_on => line.booked_on,
         :description => line.description,
-        :expense_category => ExpenseCategory.find_by_name(line.category)
+        :expense_category => ExpenseCategory.find_by_name(line.category),
+        :outbank_unique_id => line.unique_id
       )
     end
   end
+  
 end

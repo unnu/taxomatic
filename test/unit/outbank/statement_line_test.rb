@@ -22,4 +22,34 @@ class Outbank::StatementLineTest < Test::Unit::TestCase
     assert_equal "Saldo der Abschlussposten QM - Support 04082 Leipzig", line.description
     assert_equal "Bankgebühren", line.category
   end
+
+  #
+  # Unique Is
+  #
+  def test_unique_id_exists
+    row = @csv_rows[0]
+    line = Outbank::StatementLine.new(row)
+    assert_equal "40206a5df6a6372c952e2402b96c3f64", line.unique_id
+  end
+
+  def test_unique_id_depends_on_amount
+    row = @csv_rows[0]
+    line = Outbank::StatementLine.new(row)
+    row['Betrag'] = "1#{row['Betrag']}"
+    assert_not_equal Outbank::StatementLine.new(row), line.unique_id
+  end
+  
+  def test_unique_id_depends_on_booked_on
+    row = @csv_rows[0]
+    line = Outbank::StatementLine.new(row)
+    row['Buchungstag'] = "01.01.1971"
+    assert_not_equal Outbank::StatementLine.new(row), line.unique_id
+  end
+  
+  def test_unique_id_depends_on_description
+    row = @csv_rows[0]
+    line = Outbank::StatementLine.new(row)
+    row['Verwendungszweck'] = "#{row['Verwendungszweck']} Bla bla"
+    assert_not_equal Outbank::StatementLine.new(row), line.unique_id
+  end
 end

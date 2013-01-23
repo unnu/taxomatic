@@ -22,10 +22,14 @@ module Outbank
   
     def run!
       @csv.each do |row|
-        line = Outbank::StatementLine.new(row)
-        #unless StatementLine.exists?
-        ::StatementLine.create_from_outbank_line!(line)
-        #end
+        outbank_line = Outbank::StatementLine.new(row)
+        line = ::StatementLine.find_by_outbank_unique_id(outbank_line.unique_id)
+        if line
+          puts "Outbank statement line already imported."
+        else
+          puts "Importing outbank statement line ..."
+          line = ::StatementLine.create_from_outbank_line!(outbank_line)
+        end
       end
     end
     
