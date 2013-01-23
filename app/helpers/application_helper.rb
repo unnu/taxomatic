@@ -14,14 +14,9 @@ module ApplicationHelper
   end
 
   def tax_options
-    # being pragmatic. this would be cleanest in a model
-    [
-      ['--- Bitte waehlen ---', nil],
-      ['19%', 19],
-      ['16%', 16],
-      ['7%', 7],
-      ['0%', 0]
-    ]
+    options = [['Steuersatz wählen ...', nil]]
+    Payment::TAX_RATES.each { |rate| options << ["#{rate}%", rate] }
+    options
   end
 
 end
