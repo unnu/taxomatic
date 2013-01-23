@@ -3,6 +3,9 @@ require 'csv'
 module Outbank
   class StatementImport
 
+    # required for testing only
+    attr_reader :csv
+
     def self.run!(csv_file = 'data/outbank.csv')
       new(csv_file).run!
     end

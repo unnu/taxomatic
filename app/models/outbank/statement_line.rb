@@ -24,6 +24,18 @@ module Outbank
       to_cents(@row['Betrag'])
     end
     
+    def booked_on
+      Date.parse(@row['Buchungstag'])
+    end
+    
+    def valuta_on
+      Date.parse(@row['Valuta-Datum'])
+    end
+    
+    def description
+      @row['Verwendungszweck'].gsub(/\s+/, ' ')
+    end
+    
     def method_missing(arg)
       @row.send(:[], ATTRIBUTE_MAPPING[arg])
     end
