@@ -1,10 +1,11 @@
 class Payment < ActiveRecord::Base
 
-  belongs_to :expense_category
+  TAX_RATES = [0, 7, 16, 19]
 
-  validates_presence_of :amount_net, :amount_gross, :tax, :billed_on
-  validates_numericality_of :amount_net, :amount_gross, :tax
-  validates_inclusion_of :tax, :in => [0, 7, 16, 19]
+  belongs_to :expense_category
+  
+  validates_presence_of :amount_gross, :billed_on
+  validates_numericality_of :amount_gross
   validate :amounts_and_tax_calculation_must_be_correct
   validate :dates_must_be_plausible
 

@@ -2,6 +2,8 @@ class Invoice < Payment
 
   belongs_to :client
   
+  validates_numericality_of :amount_net, :only_integer => true
+  validates_inclusion_of :tax, :in => TAX_RATES
   validates_presence_of :client_id
 
   scope :unpaid, :conditions => {:paid_on => nil, :canceled => 0}, :order => 'created_at ASC'

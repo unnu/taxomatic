@@ -2,7 +2,10 @@ require 'digest'
 
 class Expense < Payment
 
+  validates_numericality_of :amount_net, :only_integer => true
+  validates_inclusion_of :tax, :in => TAX_RATES
   validates_presence_of :expense_category_id
+  
   belongs_to :expense_category
    
   scope :all_for_year, lambda { |year|
