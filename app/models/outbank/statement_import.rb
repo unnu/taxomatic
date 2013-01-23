@@ -22,6 +22,7 @@ module Outbank
   
     def run!
       print_csv_info(@csv)
+      imported_rows = 0
       @csv.each do |row|
         outbank_line = Outbank::StatementLine.new(row)
         line = ::StatementLine.find_by_outbank_unique_id(outbank_line.unique_id)
@@ -29,6 +30,7 @@ module Outbank
           puts "importing #{outbank_line.to_s} ... "
           begin
             line = ::StatementLine.create_from_outbank_line!(outbank_line)
+            imported_rows += 1
             puts "   done."
           rescue ActiveRecord::RecordInvalid => e
             puts "failed "
@@ -38,6 +40,7 @@ module Outbank
           end
         end
       end
+      puts "Imported #{imported_rows} row(s)."
     end
     
     private
