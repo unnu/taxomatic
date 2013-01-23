@@ -1,5 +1,9 @@
 module Outbank
   
+  # 
+  # this is a representation of one line in an outbank csv statement
+  # with translated, parsed attributes (cents, date, etc.).
+  #
   class StatementLine
 
     include MoneyStringParser
@@ -13,7 +17,8 @@ module Outbank
       :recipient => "Empfänger/Auftraggeber",
       :bank_code => "Bankleitzahl",
       :account_number => "Kontonummer",
-      :description => "Verwendungszweck"
+      :description => "Verwendungszweck",
+      :category => "Kategorie"
     }
 
     def initialize(csv_row)

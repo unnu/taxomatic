@@ -20,5 +20,6 @@ class Outbank::StatementLineTest < Test::Unit::TestCase
     assert_equal nil, line.bank_code
     assert_equal nil, line.account_number
     assert_equal "Saldo der Abschlussposten QM - Support 04082 Leipzig", line.description
+    assert_equal "Bankgebühren", line.category
   end
 end
