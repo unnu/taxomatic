@@ -1,0 +1,17 @@
+h1 Listing statement_lines
+
+table
+  tr
+    th
+    th
+    th
+
+  - @statement_lines.each do |statement_line|
+    tr
+      td = link_to 'Show', statement_line
+      td = link_to 'Edit', edit_statement_line_path(statement_line)
+      td = link_to 'Destroy', statement_line, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Statement line', new_statement_line_path

@@ -49,11 +49,12 @@ module Outbank
     end
     
     def unique_id
-      Digest::MD5.hexdigest(self.to_s)
+      unique_string = [amount, booked_on, description].join('-')
+      Digest::MD5.hexdigest(unique_string)
     end
     
     def to_s
-      [amount, booked_on, description].join('-')
+      "Buchung vom: #{booked_on}, Betrag: #{amount}, Beschreibung: #{description}"
     end
     
   end

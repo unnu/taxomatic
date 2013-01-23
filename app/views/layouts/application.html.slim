@@ -17,6 +17,7 @@ html
       = link_to("USt-Voranmeldung", controller: 'tax', action: 'ust') + " | "
       = link_to("Ausgaben", expenses_path) + " | "
       = link_to("Rechnungen", invoices_path) + " | "
+      = link_to("Buchungen", statement_lines_path) + " | "
       = link_to("ESt", controller: 'est_tax', action: 'index') + " | "
       = link_to("Kategorien", controller: 'expense_categories', action: 'list') + " | "
       = link_to("Kunden", controller: 'clients', action: 'list')
