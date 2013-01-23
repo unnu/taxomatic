@@ -1,6 +1,8 @@
 module Harvest
   class InvoiceWrapper
     
+    include MoneyStringParser
+    
     def initialize(api_object)
       @api_object = api_object
     end
@@ -36,17 +38,6 @@ module Harvest
     end
     
     private 
-    
-      def to_cents(string)
-        matches = string.match(/\.([0-9]{1,2})\Z/)
-        if !matches
-          string.to_i * 100
-        elsif matches[1].length == 1
-          string.gsub('.', '').to_i * 10
-        elsif matches[1].length == 2
-          string.gsub('.', '').to_i
-        end
-      end
       
       def method_missing(args)
         @api_object.send(args)

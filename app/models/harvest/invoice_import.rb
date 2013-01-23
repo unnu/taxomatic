@@ -1,6 +1,6 @@
-module Harvest
+require 'harvested'
 
-  require 'harvested'
+module Harvest
 
   class InvoiceImport
     
