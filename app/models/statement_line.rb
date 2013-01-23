@@ -3,6 +3,11 @@
 # Only when it is converted to an Expense or Invoice it becomes visible in the accounting.
 #
 class StatementLine < Payment
+  
+  # this is a must, because the tax rate and thereby the amount_net depends on it.
+  # amount_net is calculated when the StatementLine is converted into a payment
+  validates_numericality_of :expense_category_id
+  
   class << self
     def create_from_outbank_line!(line)
       self.create!(

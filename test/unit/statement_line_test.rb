@@ -22,4 +22,15 @@ class StatementLineTest < ActiveSupport::TestCase
     assert_equal 'Invoice description', line.description
   end
   
+  def test_must_have_expense_category
+    attributes = {
+      :amount_gross => 42,
+      :billed_on => Date.parse("2012-08-16"),
+      :description => "Invoice description"
+    }
+    line = StatementLine.new(attributes)
+    line.valid?
+    assert_equal ["ist keine Zahl"], line.errors[:expense_category_id]
+  end
+  
 end
