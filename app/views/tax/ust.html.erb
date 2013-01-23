@@ -47,15 +47,15 @@
       </tr>
       <tr>
         <td>Bemessungsgrundlage (Z27)</td>
-        <td class="num"><%= number_to_currency(@declaration.invoices_net_sum.round) %></td>
+        <td class="num"><%= number_to_currency(@declaration.net_earnings.round) %></td>
       </tr>
       <tr>
         <td>damit vereinnahmte Umsatzsteuer</td>
-        <td class="num"><%= number_to_currency(@declaration.invoices_ust_sum) %></td>
+        <td class="num"><%= number_to_currency(@declaration.tax_on_invoices) %></td>
       </tr>
       <tr>
         <td>abziehbare Vorsteuerbeträge (Z55)</td>
-        <td class="num"><%= number_to_currency(@declaration.expenses_ust_sum) %></td>
+        <td class="num"><%= number_to_currency(@declaration.tax_on_expenses) %></td>
       </tr>
       <tr>
         <td>&nbsp;</td>
@@ -101,8 +101,8 @@
       <% end %>
       <tr>
         <th colspan="3">Summen</th>
-        <th class="num"><%= number_to_currency(@declaration.invoices_net_sum) %></th>
-        <th class="num"><%= number_to_currency(@declaration.invoices_ust_sum) %></th>
+        <th class="num"><%= number_to_currency(@declaration.net_earnings) %></th>
+        <th class="num"><%= number_to_currency(@declaration.tax_on_invoices) %></th>
         <th class="num">&nbsp;</th>
       </tr>
 
@@ -135,8 +135,8 @@
       <% end %>
       <tr>
         <th colspan="3">Summen</th>
-        <th class="num"><%= number_to_currency(@declaration.expenses_net_sum) %></th>
-        <th class="num"><%= number_to_currency(@declaration.expenses_ust_sum) %></th>
+        <th class="num"><%= number_to_currency(@declaration.net_expenses) %></th>
+        <th class="num"><%= number_to_currency(@declaration.tax_on_expenses) %></th>
         <th class="num">&nbsp;</th>
       </tr>
       <% end %>

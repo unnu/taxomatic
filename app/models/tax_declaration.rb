@@ -16,24 +16,24 @@ class TaxDeclaration
     @expenses ||= Expense.find_all_by_months([@date.month], @date.year)
   end
   
-  def invoices_net_sum
+  def net_earnings
     sum_amount_net(invoices)
   end
   
-  def invoices_ust_sum
+  def tax_on_invoices
     sum_ust(invoices)
   end
   
-  def expenses_net_sum
+  def net_expenses
     sum_amount_net(expenses)
   end
   
-  def expenses_ust_sum
+  def tax_on_expenses
     sum_ust(expenses)
   end
   
   def tax_due
-    invoices_ust_sum - expenses_ust_sum
+    tax_on_invoices - tax_on_expenses
   end
   
   private
