@@ -21,7 +21,8 @@ module Outbank
     end
   
     def run!
-      print_csv_info(@csv)
+      get_csv_metadata
+      print_csv_info
       imported_rows = 0
       @csv.each do |row|
         outbank_line = Outbank::StatementLine.new(row)
@@ -40,16 +41,21 @@ module Outbank
           end
         end
       end
-      puts "Imported #{imported_rows} row(s)."
+      puts "Imported #{imported_rows} of #{@num_statements} statement(s)."
     end
     
     private
     
-    def print_csv_info(csv)
-      csv = csv.read
-      earliest_booking = csv[csv.size - 1]['Buchungstag']
-      latest_booking   = csv[0]['Buchungstag']
-      puts "CSV has #{csv.size} statement lines from #{earliest_booking} to #{latest_booking}."
+    def get_csv_metadata
+      rows = @csv.read
+      @earliest_booking = rows[rows.size - 1]['Buchungstag']
+      @latest_booking   = rows[0]['Buchungstag']
+      @num_statements   = rows.size
+      @csv.rewind      
+    end
+    
+    def print_csv_info
+      puts "CSV has #{@num_statements} statement lines from #{@earliest_booking} to #{@latest_booking}."
     end    
     
   end
