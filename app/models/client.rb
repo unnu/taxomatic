@@ -7,14 +7,4 @@ class Client < ActiveRecord::Base
   
   scope :active, :conditions => {:is_active => true}, :order => :name
   
-  # if you're strict you'll complain ... this is view code.
-  # alternatives: helper; TextHelper#simple_format
-  def address
-    read_attribute(:address).gsub("\n", "<br />")
-  end
-  
-  def address_plain
-    read_attribute(:address)
-  end
-
 end

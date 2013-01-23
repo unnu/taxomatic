@@ -4,14 +4,12 @@ class ExpenseTest < Test::Unit::TestCase
   
   def attributes
     {"tax"=>19,
-     "website_id"=>nil,
      "amount_net"=>1378,
      "billed_on"=> Time.now - 1.day,
      "canceled" => false,
      "client_id"=>nil,
      "tax_declaration_id"=>nil,
      "ref_nr"=>"n.a. (Woolworth)",
-     "interval"=>nil,
      "description"=>"Order,Register,PostIts",
      "paid_on"=>nil,
      "amount_gross"=>1640,
@@ -49,6 +47,32 @@ class ExpenseTest < Test::Unit::TestCase
       e = Expense.new(:billed_on => Time.parse("2008-#{month}-01"))
       assert_equal quarter, e.billed_in_quarter, "Expected Month #{month} to be in Quarter #{quarter}"
     end
+  end
+  
+  def x_test_create_from_outbank_statement_line
+    line =
+    expense = Expense.create_from_outbank_statement_line!(line)
+    
+    invoice_wrapper = OpenStruct.new(
+      :number => "001122", 
+      :amount_gross => 4760,
+      :amount_net => 4000,
+      :tax_rate => "19",
+      :tax_amount => "200",
+      :issued_at => "2012-08-16",
+      :client_id => 42,
+      :subject => 'Invoice text'
+    )
+    invoice = ::Invoice.create_from_harvest!(invoice_wrapper)
+    assert_equal "001122", invoice.ref_nr
+    assert_equal 4000, invoice.amount_net
+    assert_equal 4760, invoice.amount_gross
+    assert_equal 19, invoice.tax
+    assert_equal Date.parse("2012-08-16"), invoice.billed_on
+    assert_equal @client, invoice.client
+    assert_equal "Invoice text", invoice.description
+    assert_equal 0, invoice.canceled
+    
   end
   
 end

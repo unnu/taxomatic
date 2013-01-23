@@ -23,6 +23,8 @@ module Outbank
     def run!
       @csv.each do |row|
         line = StatementLine.new(row)
+        # check if already imported
+        Expense.create_from_outbank_statement_line!(line)
       end
     end
     

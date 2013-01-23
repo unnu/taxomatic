@@ -11,12 +11,20 @@ class Expense < Payment
 
   before_create :generate_ref_nr, :if => lambda { |expense| expense.ref_nr.nil? }
   
-  def self.month_selection_field
-    'billed_on'
-  end
+  class << self
+    
+    def month_selection_field
+      'billed_on'
+    end
+    
+    def find_years_with_expenses 
+      find_by_sql('SELECT DISTINCT YEAR(billed_on) AS year from payments WHERE type="Expense" ORDER BY year').map(&:year)
+    end
+    
+    def create_from_outbank_statement_line!(line)
+      p line
+    end
 
-  def self.find_years_with_expenses 
-    find_by_sql('SELECT DISTINCT YEAR(billed_on) AS year from payments WHERE type="Expense" ORDER BY year').map(&:year)
   end
 
   # an expense is an amortization when it is more expensive than 410 euro net 
@@ -29,7 +37,7 @@ class Expense < Payment
   def billed_in_quarter
     (billed_on.month.to_f / 3).ceil
   end
-      
+
   private
   
     def generate_ref_nr
