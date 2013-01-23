@@ -66,7 +66,7 @@ class ExpensesController < ApplicationController
 
   def destroy
     Expense.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
   
   private

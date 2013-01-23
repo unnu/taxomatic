@@ -8,5 +8,5 @@
 
   <td><%= link_to 'bearbeiten', :action => 'edit', :id => expense %></td>
   <td><%= link_to 'als Vorlage', :action => 'new_from_template', :id => expense %></td>
-  <td><%= link_to 'löschen', { :action => 'destroy', :id => expense }, :confirm => 'Wirklich loeschen?' %></td>
+  <td><%= link_to 'löschen', expense_path(expense), :confirm => 'Wirklich löschen?', :method => :delete %></td>
 </tr>
