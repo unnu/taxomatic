@@ -18,7 +18,7 @@
 
     <% for expense in expenses %>
       <tr<%= expense.amortization? ? ' class="amortization"' : '' %>>
-        <td><%=h format_dmy(expense.paid_on) %></td>
+        <td><%=h I18n.l(expense.paid_on) %></td>
         <td class="money"><%=h format_euro(expense.amount_net) %></td>
         <td><%= truncate(expense.description, :length => 40) %></td>
       </tr>

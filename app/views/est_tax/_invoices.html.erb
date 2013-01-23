@@ -8,7 +8,7 @@
   </tr>
   <% for invoice in @invoices %>
     <tr>
-      <td><%=h format_dmy(invoice.paid_on) %></td>
+      <td><%=h I18n.l(invoice.paid_on) %></td>
       <td class="money"><%=h format_euro(invoice.amount_net) %></td>
       <td><%=h invoice.client.name %></td>
     </tr>

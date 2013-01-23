@@ -11,6 +11,10 @@ class StatementLine < Payment
   # this is a (hopefully) unique identifier for this record's source line in outbank
   validates_presence_of :outbank_unique_id
   
+  # if there is a payment, this line is used in tax calculation etc.
+  # can and will be nil in most cases
+  belongs_to :payment
+  
   class << self
     def create_from_outbank_line!(line)
       self.create!(
@@ -24,6 +28,18 @@ class StatementLine < Payment
         :outbank_unique_id => line.unique_id
       )
     end
+  end
+  
+  def has_payment?
+    self.payment.present?
+  end
+  
+  def create_payment!
+    logger.debug("create_payment")
+  end
+  
+  def delete_payment!
+    logger.debug("delete_payment")
   end
   
 end

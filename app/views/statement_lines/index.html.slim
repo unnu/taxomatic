@@ -1,17 +1,42 @@
-h1 Listing statement_lines
+h1 Buchungen
 
-table
+table#itemslist
   tr
-    th
-    th
-    th
+    th Datum
+    th Betrag
+    th Beschreibung
+    th Kategorie
+    th Ausgabe
 
-  - @statement_lines.each do |statement_line|
+  - @statement_lines.each do |line|
     tr
-      td = link_to 'Show', statement_line
-      td = link_to 'Edit', edit_statement_line_path(statement_line)
-      td = link_to 'Destroy', statement_line, :confirm => 'Are you sure?', :method => :delete
+      td = I18n.l(line.billed_on)
+      td = Money.new(line.amount_gross)
+      td = line.description.truncate(40)
+      td = line.expense_category.name
+      - options = {:class => 'payment_toggler', :data => {:remote => true, :url => update_expense_statement_line_path(line.id), :method => :put}}
+      td = check_box_tag("create_payment", "true", line.has_payment?, options)
 
-br
+javascript:
+  jQuery(document).ready(function() {
 
-= link_to 'New Statement line', new_statement_line_path
+    var $ = jQuery;
+
+    $(".payment_toggler")
+    
+      .on('click', function(event) {
+        $(this).attr('disabled', true);
+        event.preventDefault();
+      })
+      
+      .on('ajax:success', function() {  
+        var checkbox = $(this);
+        checkbox.attr('disabled', false);
+        checkbox.prop('checked', !checkbox.is(':checked'));
+      })
+      
+      .on('ajax:error', function() {  
+        var checkbox = $(this);
+        checkbox.attr('disabled', false);
+      });
+  });

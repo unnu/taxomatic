@@ -1,5 +1,5 @@
 <tr>
-  <td><%=h format_dmy(expense.billed_on) %></td>
+  <td><%=h I18n.l(expense.billed_on) %></td>
   <td><%=h expense.category.name %></td>
   <td class="money"><%=h format_euro(expense.amount_net) %></td>
   <td class="money"><%=h format_euro(expense.amount_gross) %></td>

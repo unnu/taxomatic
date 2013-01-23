@@ -1,10 +1,6 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  
-  def format_dmy(date)
-    date.strftime('%d.%m.%Y') if date != nil
-  end
-  
+
   def format_dm(date)
     date.strftime('%d.%m.') if date != nil
   end

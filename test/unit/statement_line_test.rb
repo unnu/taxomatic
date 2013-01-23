@@ -34,5 +34,5 @@ class StatementLineTest < ActiveSupport::TestCase
     line.valid?
     assert_equal ["ist keine Zahl"], line.errors[:expense_category_id]
   end
-  
+
 end

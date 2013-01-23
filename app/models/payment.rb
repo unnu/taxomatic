@@ -3,6 +3,7 @@ class Payment < ActiveRecord::Base
   TAX_RATES = [0, 7, 16, 19]
 
   belongs_to :expense_category
+  has_one :statement_line
   
   validates_presence_of :amount_gross, :billed_on
   validates_numericality_of :amount_gross

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130123213948) do
+ActiveRecord::Schema.define(:version => 20130123225220) do
 
   create_table "clients", :force => true do |t|
     t.string  "name",              :limit => 45
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20130123213948) do
     t.integer   "canceled",            :limit => 1,   :default => 0,  :null => false
     t.integer   "tax_declaration_id"
     t.string    "outbank_unique_id"
+    t.integer   "payment_id"
   end
 
   add_index "payments", ["ref_nr"], :name => "ref_nr unique", :unique => true

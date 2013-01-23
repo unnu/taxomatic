@@ -2,7 +2,9 @@ Git::Application.routes.draw do
   
   resources :expenses
   resources :invoices
-  resources :statement_lines
+  resources :statement_lines do
+    put 'update_expense', on: :member
+  end
   
   match 'expenses/yearly/:year' => 'expenses#index', :as => 'expenses_for_year'
   match 'invoices/yearly/:year' => 'invoices#index', :as => 'invoices_for_year'

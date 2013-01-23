@@ -22,8 +22,8 @@
 <% for invoice in @invoices %>
   <tr<%= row_css(invoice, last_month, last_year) %>>
     <td><%=h invoice.ref_nr %></td>
-    <td><%=h format_dmy(invoice.billed_on) %></td>
-    <td><%= format_dmy(invoice.paid_on) %></td>
+    <td><%=h I18n.l(invoice.billed_on) %></td>
+    <td><%=h I18n.l(invoice.paid_on) %></td>
     <td><%=h invoice.client.name %></td>
     <td class="money"><%=h format_euro(invoice.amount_net) %></td>
     <td class="money"><%=h format_euro(invoice.amount_gross) %></td>
