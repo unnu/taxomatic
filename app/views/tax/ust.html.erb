@@ -47,15 +47,15 @@
       </tr>
       <tr>
         <td>Bemessungsgrundlage (Z27)</td>
-        <td class="num"><%= number_to_currency(@invoices_net_sum.round) %></td>
+        <td class="num"><%= number_to_currency(@declaration.invoices_net_sum.round) %></td>
       </tr>
       <tr>
         <td>damit vereinnahmte Umsatzsteuer</td>
-        <td class="num"><%= number_to_currency(@invoices_ust_sum) %></td>
+        <td class="num"><%= number_to_currency(@declaration.invoices_ust_sum) %></td>
       </tr>
       <tr>
         <td>abziehbare Vorsteuerbeträge (Z55)</td>
-        <td class="num"><%= number_to_currency(@expenses_ust_sum) %></td>
+        <td class="num"><%= number_to_currency(@declaration.expenses_ust_sum) %></td>
       </tr>
       <tr>
         <td>&nbsp;</td>
@@ -67,7 +67,7 @@
       </tr>
       <tr>
         <td>Betrag</td>
-        <td class="num"><%= number_to_currency(@invoices_ust_sum - @expenses_ust_sum) %></td>
+        <td class="num"><%= number_to_currency(@declaration.tax_due) %></td>
       </tr>
       <tr>
         <td>Text</td>
@@ -78,7 +78,7 @@
 
     <!-- INVOICES -->
     <table id="itemslist" class="slide">
-      <% if @invoices.empty? %>
+      <% if @declaration.invoices.empty? %>
         <tr><td><p>Keine Einnahmen für diesen Monat.</p></td></tr>
       <% else %>    
       <tr>
@@ -89,7 +89,7 @@
         <th class="num">ust</th>
         <th class="num">satz</th>
       </tr>
-      <% @invoices.each do |invoice| %>
+      <% @declaration.invoices.each do |invoice| %>
         <tr>
           <td><%= format_dm(invoice.paid_on) %></td>
           <td><%= link_to invoice.ref_nr, :controller => 'invoices', :action => 'edit', :id => invoice.id %></td>
@@ -101,8 +101,8 @@
       <% end %>
       <tr>
         <th colspan="3">Summen</th>
-        <th class="num"><%= number_to_currency(@invoices_net_sum) %></th>
-        <th class="num"><%= number_to_currency(@invoices_ust_sum) %></th>
+        <th class="num"><%= number_to_currency(@declaration.invoices_net_sum) %></th>
+        <th class="num"><%= number_to_currency(@declaration.invoices_ust_sum) %></th>
         <th class="num">&nbsp;</th>
       </tr>
 
@@ -112,7 +112,7 @@
 
     <!-- EXPENSES -->
     <table id="itemslist" class="slide">
-      <% if @expenses.empty? %>
+      <% if @declaration.expenses.empty? %>
         <tr><td><p>Keine Ausgaben für diesen Monat.</p></td></tr>
       <% else %>
       <tr>
@@ -123,7 +123,7 @@
         <th class="num">ust</th>
         <th class="num">satz</th>
       </tr>
-      <% @expenses.each do |expense| %>
+      <% @declaration.expenses.each do |expense| %>
         <tr>
           <td><%= format_dm(expense.billed_on) %></td>
           <td><%= expense.category.name %></td>
@@ -135,8 +135,8 @@
       <% end %>
       <tr>
         <th colspan="3">Summen</th>
-        <th class="num"><%= number_to_currency(@expenses_net_sum) %></th>
-        <th class="num"><%= number_to_currency(@expenses_ust_sum) %></th>
+        <th class="num"><%= number_to_currency(@declaration.expenses_net_sum) %></th>
+        <th class="num"><%= number_to_currency(@declaration.expenses_ust_sum) %></th>
         <th class="num">&nbsp;</th>
       </tr>
       <% end %>
