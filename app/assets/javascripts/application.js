@@ -12,5 +12,6 @@
 //
 // // require jquery
 // // require jquery_ujs
-// require prototype
+//= require_tree ../../../vendor/assets/javascripts/.
+//= require_tree ../../../lib/assets/javascripts/.
 //= require_tree .
