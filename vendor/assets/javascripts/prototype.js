@@ -1,3 +1,6 @@
+// evil, but hey, it's temporary until i get rid of prototype
+$.noConflict();
+
 /*  Prototype JavaScript framework, version 1.6.0.3
  *  (c) 2005-2008 Sam Stephenson
  *

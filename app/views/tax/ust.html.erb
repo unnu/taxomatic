@@ -1,124 +1,143 @@
+<% @tax_number = "112/256/30560" %>
+
 <h1>Umsatzsteuer-Voranmeldung</h1>
 
-<%= form_tag({:action => 'ust'}, {:onchange => 'submit();'}) do |form| %>
+<div id="ust-date-select">
+  <%= select_month(@date.month, :add_month_numbers => true, :prompt => "Monat ...") %>
+  <%= select_year(@date.year, :end_year => Date.today.year, :prompt => "Jahr ...") %>
+  <%= button_tag('anzeigen', :id => 'show-date') %>
+  <script>
+  jQuery(document).on('click', '#show-date', function() {
+    var month = jQuery('#ust-date-select select#date_month').val();
+    var year = jQuery('#ust-date-select select#date_year').val();
+    window.location = "/tax/ust/" + year + "/" + month;
+  });
+  </script>
 
-<%#= select_month(@months.first, :add_month_numbers => true) %>
-<%= select_tag("date[quarter]", options_for_select([%w(Q1 1), %w(Q2 2), %w(Q3 3), %w(Q4 4)], @quarter), options = {}) %>
-<%= select_year(@year) %>
+</div>
 
-<% end %>
 
 <div id="ustTables">
 
   <div id="tabSelector">
-    <a href="#" onclick="Slides.show(0);">Zusammenfassung</a>
+    <a href="#" class="selected" onclick="Slides.show(0);">Zusammenfassung</a>
     <a href="#" onclick="Slides.show(1);">Einnahmen</a>
     <a href="#" onclick="Slides.show(2);">Ausgaben</a>
   </div>
 
-<div id="tabContainer">
+  <div id="tabContainer">
 
+    <!-- SUMMARY TABLE -->
     <table class="slide">
       <tr>
-        <td><b>Steuer-Nummer</b></td>
-        <td class="num"><%= TAX_NR %></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
       </tr>
       <tr>
-        <td><b>Voranmeldungs-Zeitraum</b></td>
-        <td class="num"><%= @months.to_s + " " + @year.to_s %></td>
+        <td><b>Berechnung</b></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Bemessungsgrundlage (Z27)</td>
+        <td class="num"><%= number_to_currency(@invoices_net_sum.round) %></td>
+      </tr>
+      <tr>
+        <td>damit vereinnahmte Umsatzsteuer</td>
+        <td class="num"><%= number_to_currency(@invoices_ust_sum) %></td>
+      </tr>
+      <tr>
+        <td>abziehbare Vorsteuerbeträge (Z55)</td>
+        <td class="num"><%= number_to_currency(@expenses_ust_sum) %></td>
       </tr>
       <tr>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
       </tr>
       <tr>
-        <td><b>Bemessungsgrundlage</b> (Z27)</td>
-        <td class="num"><%= @invoices_net_sum.round %></td>
+        <td><b>Überweisung</b></td>
+        <td>&nbsp;</td>
       </tr>
       <tr>
-        <td><b>vereinnahmte USt</b></td>
-        <td class="num"><%= @invoices_ust_sum %></td>
+        <td>Betrag</td>
+        <td class="num"><%= number_to_currency(@invoices_ust_sum - @expenses_ust_sum) %></td>
       </tr>
       <tr>
-        <td><b>abziehbare Vorsteuerbeträge</b> (Z55)</td>
-        <td class="num"><%= @expenses_ust_sum %></td>
+        <td>Text</td>
+        <td>USt-Vorauzahlung <%= "#{@date.month}/#{@date.year}"%>, Steuer-Nr <%= @tax_number %></td>
       </tr>
+    </table>
+
+
+    <!-- INVOICES -->
+    <table id="itemslist" class="slide">
+      <% if @invoices.empty? %>
+        <tr><td><p>Keine Einnahmen für diesen Monat.</p></td></tr>
+      <% else %>    
       <tr>
-        <td><b>USt-Voranmeldung</b></td>
-        <td class="num"><%= @invoices_ust_sum - @expenses_ust_sum %></td>
+        <th>bezahlt</th>
+        <th>rech-nr</th>
+        <th>kunde</th>
+        <th class="num">netto</th>
+        <th class="num">ust</th>
+        <th class="num">satz</th>
       </tr>
-   </table>
+      <% @invoices.each do |invoice| %>
+        <tr>
+          <td><%= format_dm(invoice.paid_on) %></td>
+          <td><%= link_to invoice.ref_nr, :controller => 'invoices', :action => 'edit', :id => invoice.id %></td>
+          <td><%= invoice.client.name %></td>
+          <td class="num"><%= number_to_currency(invoice.amount_net_euro) %></td>
+          <td class="num"><%= number_to_currency(invoice.ust_euro) %></td>
+          <td class="num"><%= invoice.tax %>%</td>
+        </tr>
+      <% end %>
+      <tr>
+        <th colspan="3">Summen</th>
+        <th class="num"><%= number_to_currency(@invoices_net_sum) %></th>
+        <th class="num"><%= number_to_currency(@invoices_ust_sum) %></th>
+        <th class="num">&nbsp;</th>
+      </tr>
 
-  <table id="itemslist" class="slide">
-    <tr>
-      <th>bezahlt</th>
-      <th>rech-nr</th>
-      <th>kunde</th>
-      <th class="num">netto</th>
-      <th class="num">ust</th>
-      <th class="num">satz</th>
-    </tr>
-  <% for invoice in @invoices %>
-    <tr>
-      <td><%= format_dm(invoice.paid_on) %></td>
-      <td><%= link_to invoice.ref_nr, :controller => 'invoices', :action => 'edit', :id => invoice.id %></td>
-      <td><%= invoice.client.name %></td>
-      <td class="num"><%= invoice.amount_net_euro %></td>
-      <td class="num"><%= invoice.ust_euro unless invoice.ust_euro == '0.00' %></td>
-      <td class="num"><%= invoice.tax %>%</td>
-    </tr>
-  <% end %>
-    <tr>
-      <th colspan="3">bemessungsgrundlage</th>
-      <th class="num"><%= @invoices_net_sum %></th>
-      <th class="num">&nbsp;</th>
-      <th class="num">&nbsp;</th>
-    </tr>
-    <tr>
-      <th colspan="3">vereinnahmte umsatzsteuer</th>
-      <th class="num">&nbsp;</th>
-      <th class="num"><%= @invoices_ust_sum %></th>
-      <th class="num">&nbsp;</th>
-    </tr>
-  </table>
+      <% end %>
+    </table>
 
-<table id="itemslist" class="slide">
-  <tr>
-    <th>datum</th>
-    <th>kategorie</th>
-    <th>beschreibung</th>
-    <th class="num">netto</th>
-    <th class="num">ust</th>
-    <th class="num">satz</th>
-  </tr>
-<% for expense in @expenses %>
-  <tr>
-    <td><%= format_dm(expense.billed_on) %></td>
-    <td><%= expense.category.name %></td>
-    <td><%= link_to truncate(expense.description, :length => 40), :controller => 'expenses', :action => 'edit', :id => expense.id %></td>
-    <td class="num"><%= expense.amount_net_euro %></td>
-    <td class="num"><%= expense.ust_euro unless expense.ust_euro == '0.00' %></td>
-    <td class="num"><%= expense.tax %>%</td>
-  </tr>
-<% end %>
-  <tr>
-    <th colspan="3">ausgaben netto</th>
-    <th class="num"><%= @expenses_net_sum %></th>
-    <th class="num">&nbsp;</th>
-    <th class="num">&nbsp;</th>
-  </tr>
-  <tr>
-    <th colspan="3">abziehbare vorsteuer</th>
-    <th class="num">&nbsp;</th>
-    <th class="num"><%= @expenses_ust_sum %></th>
-    <th class="num">&nbsp;</th>
-  </tr>
-</table>
 
-</div> <!-- endtabcontainer -->
+    <!-- EXPENSES -->
+    <table id="itemslist" class="slide">
+      <% if @expenses.empty? %>
+        <tr><td><p>Keine Ausgaben für diesen Monat.</p></td></tr>
+      <% else %>
+      <tr>
+        <th>datum</th>
+        <th>kategorie</th>
+        <th>beschreibung</th>
+        <th class="num">netto</th>
+        <th class="num">ust</th>
+        <th class="num">satz</th>
+      </tr>
+      <% @expenses.each do |expense| %>
+        <tr>
+          <td><%= format_dm(expense.billed_on) %></td>
+          <td><%= expense.category.name %></td>
+          <td><%= link_to truncate(expense.description, :length => 40), :controller => 'expenses', :action => 'edit', :id => expense.id %></td>
+          <td class="num"><%= number_to_currency(expense.amount_net_euro) %></td>
+          <td class="num"><%= number_to_currency(expense.ust_euro) %></td>
+          <td class="num"><%= expense.tax %>%</td>
+        </tr>
+      <% end %>
+      <tr>
+        <th colspan="3">Summen</th>
+        <th class="num"><%= number_to_currency(@expenses_net_sum) %></th>
+        <th class="num"><%= number_to_currency(@expenses_ust_sum) %></th>
+        <th class="num">&nbsp;</th>
+      </tr>
+      <% end %>
+    </table>
+
+  </div> <!-- endtabcontainer -->
 
 </div>
 
 <script type="text/javascript">
-  Slides = new TabCtrl('tabContainer');
+Slides = new TabCtrl('tabContainer');
 </script>
