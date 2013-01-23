@@ -20,10 +20,6 @@ class Expense < Payment
     def find_years_with_expenses 
       find_by_sql('SELECT DISTINCT YEAR(billed_on) AS year from payments WHERE type="Expense" ORDER BY year').map(&:year)
     end
-    
-    def create_from_outbank_statement_line!(line)
-      p line
-    end
 
   end
 
