@@ -21,17 +21,33 @@ module Outbank
     end
   
     def run!
+      print_csv_info(@csv)
       @csv.each do |row|
         outbank_line = Outbank::StatementLine.new(row)
         line = ::StatementLine.find_by_outbank_unique_id(outbank_line.unique_id)
-        if line
-          puts "Outbank statement line already imported."
-        else
-          puts "Importing outbank statement line ..."
-          line = ::StatementLine.create_from_outbank_line!(outbank_line)
+        unless line
+          puts "importing #{outbank_line.to_s} ... "
+          begin
+            line = ::StatementLine.create_from_outbank_line!(outbank_line)
+            puts "   done."
+          rescue ActiveRecord::RecordInvalid => e
+            puts "failed "
+            puts "Error: #{e.message}"
+            puts "Kategorie: #{outbank_line.category}"
+            next
+          end
         end
       end
     end
+    
+    private
+    
+    def print_csv_info(csv)
+      csv = csv.read
+      earliest_booking = csv[csv.size - 1]['Buchungstag']
+      latest_booking   = csv[0]['Buchungstag']
+      puts "CSV has #{csv.size} statement lines from #{earliest_booking} to #{latest_booking}."
+    end    
     
   end
 
