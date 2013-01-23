@@ -39,7 +39,7 @@ class StatementLine < Payment
   end
   
   def delete_payment!
-    logger.debug("delete_payment")
+    payment.destroy
   end
   
 end
