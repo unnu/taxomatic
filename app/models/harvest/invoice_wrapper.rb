@@ -8,7 +8,7 @@ module Harvest
     end
     
     def amount_net
-      (amount_gross - amount_tax)
+      amount_gross - amount_tax
     end
     
     def amount_gross

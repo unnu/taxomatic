@@ -49,12 +49,12 @@ class Harvest::InvoiceWrapperTest < Test::Unit::TestCase
     assert_equal 12345, Harvest::InvoiceWrapper.new(api_object).client_id
   end
   
-  def test_tax_rate
+  def test_valid_tax_rate
     api_object = OpenStruct.new(:tax => "19.0")
     assert_equal 19, Harvest::InvoiceWrapper.new(api_object).tax_rate
   end
   
-  def test_tax_rate
+  def test_invalid_tax_rate
     api_object = OpenStruct.new(:tax => "42.0")
     assert_raise(StandardError) { Harvest::InvoiceWrapper.new(api_object).tax_rate }
   end
@@ -62,5 +62,10 @@ class Harvest::InvoiceWrapperTest < Test::Unit::TestCase
   def test_ref_nr
     api_object = OpenStruct.new(:number => "00712")
     assert_equal "00712", Harvest::InvoiceWrapper.new(api_object).ref_nr
+  end
+  
+  def test_amount_tax
+    api_object = OpenStruct.new(:tax_amount => "42.01")
+    assert_equal 4201, Harvest::InvoiceWrapper.new(api_object).amount_tax
   end
 end
