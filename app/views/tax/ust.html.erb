@@ -34,6 +34,14 @@
         <td>&nbsp;</td>
       </tr>
       <tr>
+        <td><b>Monat</b></td>
+        <td class="num"><%= I18n.l(@date, :format => :month_year) %></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
         <td><b>Berechnung</b></td>
         <td>&nbsp;</td>
       </tr>
@@ -63,7 +71,7 @@
       </tr>
       <tr>
         <td>Text</td>
-        <td>USt-Vorauzahlung <%= "#{@date.month}/#{@date.year}"%>, Steuer-Nr <%= @tax_number %></td>
+        <td>USt-Vorauzahlung für <%= I18n.l(@date, :format => :month_year) %>, Steuer-Nr <%= @tax_number %></td>
       </tr>
     </table>
 

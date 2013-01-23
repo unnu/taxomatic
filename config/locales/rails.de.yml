@@ -13,6 +13,7 @@ de:
       short: "%e. %b"
       post_short: '%m/%Y'
       long: "%e. %B %Y"
+      month_year: "%B %Y"
     day_names:
       - Sonntag
       - Montag
