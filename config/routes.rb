@@ -11,7 +11,7 @@ Git::Application.routes.draw do
   match 'expenses/yearly/:year' => 'expenses#index', :as => 'expenses_for_year'
   match 'invoices/yearly/:year' => 'invoices#index', :as => 'invoices_for_year'
 
-  match "/tax/ust(/:year(/:month))", :to => "tax#ust"
+  match "/tax/ust(/:year(/:month))", :to => "tax#ust", :as => 'ust_tax_declaration'
   
   root :to => "tax#ust"
   match "/:controller(/:action(/:id))(.:format)"

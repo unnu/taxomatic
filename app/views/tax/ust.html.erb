@@ -3,7 +3,8 @@
 <div id="ust-date-select">
   <%= select_month(@date.month, :add_month_numbers => true, :prompt => "Monat ...") %>
   <%= select_year(@date.year, :end_year => Date.today.year, :prompt => "Jahr ...") %>
-  <%= button_tag('anzeigen', :id => 'show-date') %>
+  <%= link_to_date('letzter Monat', Date.today - 1.month) %>
+  <%= link_to_date('dieser Monat', Date.today) %>
 </div>
 
 
