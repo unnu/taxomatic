@@ -15,3 +15,6 @@ table#itemslist
       td = line.description.truncate(60, :separator => ' ')
       td = line.expense_category.name
       td = expense_toggle_check_box(line)
+      
+
+p Zeige #{@statement_lines.count} Buchung(en).
