@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130123225220) do
+ActiveRecord::Schema.define(:version => 20130124140658) do
 
   create_table "clients", :force => true do |t|
     t.string  "name",              :limit => 45
@@ -20,11 +20,12 @@ ActiveRecord::Schema.define(:version => 20130123225220) do
   end
 
   create_table "expense_categories", :force => true do |t|
-    t.string  "name",           :limit => 100, :default => "", :null => false
-    t.integer "default_tax",    :limit => 2,   :default => 0,  :null => false
-    t.integer "default_amount", :limit => 2,   :default => 0,  :null => false
-    t.string  "note",                          :default => "", :null => false
+    t.string  "name",           :limit => 100, :default => "",    :null => false
+    t.integer "default_tax",    :limit => 2,   :default => 0,     :null => false
+    t.integer "default_amount", :limit => 2,   :default => 0,     :null => false
+    t.string  "note",                          :default => "",    :null => false
     t.boolean "amortization"
+    t.boolean "private",                       :default => false
   end
 
   add_index "expense_categories", ["name"], :name => "name_unique", :unique => true
