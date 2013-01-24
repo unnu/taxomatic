@@ -15,3 +15,5 @@
 /tmp
 
 /data/*.csv
+/data/backups/*.sql
+/data/backups/*.csv
