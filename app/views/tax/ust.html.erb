@@ -1,5 +1,3 @@
-<% @tax_number = "112/256/30560" %>
-
 <div id="ust-date-select">
   <%= select_month(@date.month, :add_month_numbers => true, :prompt => "Monat ...") %>
   <%= select_year(@date.year, :end_year => Date.today.year, :prompt => "Jahr ...") %>
@@ -62,7 +60,7 @@
       </tr>
       <tr>
         <td>Text</td>
-        <td>USt-Vorauszahlung für <%= I18n.l(@date, :format => :month_year) %>, Steuer-Nr <%= @tax_number %></td>
+        <td>USt-Vorauszahlung für <%= I18n.l(@date, :format => :month_year) %>, Steuer-Nr <%= AppConfig['tax_id'] %></td>
       </tr>
     </table>
 
