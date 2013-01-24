@@ -22,7 +22,7 @@ taxomatic helps you do your monthly tax declaration. It imports your invoices an
 1. You manage your bank accounts with the OS X application [Outbank](http://www.outbank.de/) (optional but recommended)
 1. You use [Harvest](http://www.getharvest.com) to bill your clients (optional)
 
-\2. and 3. are optional, but they are the part that makes the declaration take less than 5 minutes. 
+Steps 2. and 3. are optional, but they are the part that makes the declaration take less than 5 minutes. 
 You can also enter expenses and invoices by hand, I did that for a long time and it worked well enough. I'm open to pull requests for importers from other tools and services (like Saldomat).
 
 ## Installation
