@@ -36,15 +36,15 @@ You can also enter expenses and invoices by hand, I did that for a long time and
 1. Before you start, ensure that all statement lines you are going to import have a category, and that this category is present in taxomatic (matching is done by name). You can also do this by trial-and-error as the lines that can't be imported will be skipped.
 1. Export the statements of the desired Outbank accounts as CSV. When exporting, leave all settings at their default
 2. Save the file in data/outbank.csv. 
-3. Run `rake import:statements`
+3. Run `rake import:statement`
 
 ## Importing invoices from Harvest
 
-1. Before you start, ensure that all clients of your invoices exist in taxomatic. the matching is done by the harvest_client id, You can also do this by trial-and-error as the lines that can't be imported will be skipped.
+1. Before you start, ensure that all clients of your invoices exist in taxomatic. The matching is done by the harvest_client id.
 1. Configure the harvest client access data in app/models/invoice_import.rb.
 3. Run `rake import:invoices`
 
-On the next export, you can export everything again, or just the new stuff. taxomatic will be careful not to import stuff twice.
+On the next export, taxomatic will be careful not to import invoices twice.
 
 ## Pro tips
 
