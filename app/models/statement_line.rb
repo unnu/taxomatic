@@ -16,7 +16,7 @@ class StatementLine < Payment
   
   # if there is an expense, this line is used in tax calculation etc.
   # can and will be nil in most cases
-  belongs_to :expense, :class_name => 'Expense'
+  belongs_to :expense, :class_name => 'Expense', :dependent => :destroy
   
   class << self
     def create_from_outbank_line!(line)
@@ -55,7 +55,7 @@ class StatementLine < Payment
   end
   
   def calculate_amount_net(tax_rate)
-    ((Money.new(self.amount_gross) / (100 + tax_rate)) * 100).cents
+    ((Money.new(self.amount_gross_positive) / (100 + tax_rate)) * 100).cents
   end
   
   def amount_gross_positive
