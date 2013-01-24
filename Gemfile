@@ -17,3 +17,5 @@ group :test do
   gem 'minitest'
   gem 'turn'
 end
+
+gem 'uglifier'
