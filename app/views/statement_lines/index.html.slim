@@ -11,7 +11,7 @@ table#itemslist
   - @statement_lines.each do |line|
     tr
       td = I18n.l(line.billed_on)
-      td = Money.new(line.amount_gross)
+      td.num = number_to_currency(Money.new(line.amount_gross))
       td = line.description.truncate(60, :separator => ' ')
       td = line.expense_category.name
       - options = {:class => 'expense_toggler', :data => {:remote => true, :url => update_expense_statement_line_path(line.id), :method => :put}}
