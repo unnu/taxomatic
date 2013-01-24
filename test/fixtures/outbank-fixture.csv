@@ -1,0 +1,5 @@
+"Buchungstext";"Währung";"Betrag";"Buchungstag";"Valuta-Datum";"Empfänger/Auftraggeber";"Bankleitzahl";"Kontonummer";"Verwendungszweck";"Vormerkung";"Buchungsschlüssel";"Kommentar";"Kategorie";"PayPal Empfänger/Auftraggeber";"PayPal An E-Mail";"PayPal Von E-Mail";"PayPal Gebühr";"PayPal Transaktionscode";"PayPal Status"
+;"EUR";"-15,00";"31.12.2012";"02.01.2013";;;;"Saldo der Abschlussposten  QM - Support               04082 Leipzig";"Nein";"835";;"Bankgebühren";;;;;;
+;"EUR";"-17,97";"31.12.2012";"31.12.2012";;;;"Saldo der Abschlussposten  QM - Support               04082 Leipzig              Kontoabschluss             4. Quartal 12                AktivKonto                              14,97               8 kostenfreie Poste";"Nein";"835";;"Bankgebühren";;;;;;
+;"EUR";"-15,00";"28.12.2012";"28.12.2012";;;;"12.2012  VNR. 202-03430879 PHILLIP OERTEL             MYLIFE LV AG               PHILLIP OERTEL             ";"Nein";"835";;"Altersvorsorge";;;;;;
+;"EUR";"20,15";"28.12.2012";"28.12.2012";;;;"GELDKARTE672219500001343382ERSTATTUNG UNTER VORBEHALT SNR.0                      KNR.321487100 BLZ.38070724 672219500001343382         ";"Nein";"835";;"Bus & Bahn";;;;;;
