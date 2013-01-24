@@ -1,7 +1,7 @@
 class StatementLinesController < ApplicationController
 
   def index
-    @statement_lines = StatementLine.order("billed_on DESC").includes(:expense)
+    @statement_lines = StatementLine.debits.possible_expense.includes(:expense).order("billed_on DESC")
 
     respond_to do |format|
       format.html # index.html.erb

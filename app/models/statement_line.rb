@@ -17,6 +17,8 @@ class StatementLine < Payment
   # if there is an expense, this line is used in tax calculation etc.
   # can and will be nil in most cases
   belongs_to :expense, :class_name => 'Expense', :dependent => :destroy
+
+  scope :debits, lambda { where('amount_gross < 0') }
   
   class << self
     def create_from_outbank_line!(line)
@@ -30,6 +32,9 @@ class StatementLine < Payment
         :expense_category => ExpenseCategory.find_by_name(line.category),
         :outbank_unique_id => line.unique_id
       )
+    end
+    def possible_expense
+      where("expense_category_id IN(?)", ExpenseCategory.tax_relevant.map(&:id))
     end
   end
   
