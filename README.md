@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/phillipoertel/taxomatic.png)](https://travis-ci.org/phillipoertel/taxomatic)
+
 ## Introduction
 
 taxomatic helps you do your monthly tax declaration. It imports your invoices and bank statements, lets you flag expenses easily, and calculates the tax to be paid.
