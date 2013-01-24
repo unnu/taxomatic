@@ -11,7 +11,7 @@ namespace :backup do
     if (File.read(path).size > 1024)
       puts "Dumped current database state to #{path}."
     else
-      puts "Dumping tp #{path} seems to have failed."
+      puts "Dumping to #{path} seems to have failed."
     end
   end
   
