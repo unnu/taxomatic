@@ -4,13 +4,17 @@ taxomatic helps you do your monthly tax declaration. It imports your invoices an
 
 ## Screenshots
 
-### the tax declaration page
+### Tax declaration page
 
 ![image](https://raw.github.com/phillipoertel/taxomatic/master/doc/screenshots/tax_declaration.png)
 
-### list of account statements (waiting to be flagged as expenses)
+### Listing account statements (waiting to be flagged as expenses)
 
 ![image](https://raw.github.com/phillipoertel/taxomatic/master/doc/screenshots/statement_lines.png)
+
+### How data gets into the system (the automated way)
+
+![image](https://raw.github.com/phillipoertel/taxomatic/master/doc/screenshots/rake_import.png)
 
 ## Assumptions
 
