@@ -29,6 +29,11 @@ class Harvest::InvoiceWrapperTest < Test::Unit::TestCase
     assert_equal 4210, Harvest::InvoiceWrapper.new(api_object).amount_gross
   end
   
+  def test_to_money_conversion_with_negative_number
+    api_object = OpenStruct.new(:amount => "-42.10")
+    assert_equal -4210, Harvest::InvoiceWrapper.new(api_object).amount_gross
+  end
+  
   def test_amount_net
     api_object = OpenStruct.new(:amount => "42.10", :tax_amount => "2.10")
     assert_equal 4000, Harvest::InvoiceWrapper.new(api_object).amount_net
