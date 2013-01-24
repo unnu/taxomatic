@@ -6,14 +6,6 @@
   <%= select_month(@date.month, :add_month_numbers => true, :prompt => "Monat ...") %>
   <%= select_year(@date.year, :end_year => Date.today.year, :prompt => "Jahr ...") %>
   <%= button_tag('anzeigen', :id => 'show-date') %>
-  <script>
-  jQuery(document).on('click', '#show-date', function() {
-    var month = jQuery('#ust-date-select select#date_month').val();
-    var year = jQuery('#ust-date-select select#date_year').val();
-    window.location = "/tax/ust/" + year + "/" + month;
-  });
-  </script>
-
 </div>
 
 
@@ -145,7 +137,3 @@
   </div> <!-- endtabcontainer -->
 
 </div>
-
-<script type="text/javascript">
-Slides = new TabCtrl('tabContainer');
-</script>
