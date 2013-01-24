@@ -18,9 +18,8 @@
     <th colspan="2">&nbsp;</th>
   </tr>
 
-<% last_month = last_year = nil %>
 <% for invoice in @invoices %>
-  <tr<%= row_css(invoice, last_month, last_year) %>>
+  <tr>
     <td><%=h invoice.ref_nr %></td>
     <td><%=h I18n.l(invoice.billed_on) %></td>
     <td><%=h I18n.l(invoice.paid_on) %></td>
@@ -34,7 +33,6 @@
     <td><%= link_to 'bearbeiten', :action => 'edit', :id => invoice %></td>
     <td><%= link_to 'als Vorlage', :action => 'new_from_template', :id => invoice %></td>
   </tr>
-<% last_month, last_year = invoice.billed_on.month, invoice.billed_on.year %>
 <% end %>
 </table>
 

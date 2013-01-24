@@ -3,29 +3,25 @@
 <p>Für das Jahr: <%= expenses_year_selector.html_safe %></p>
 
 <p><%= link_to 'Neue Ausgabe', :action => 'new' %></p>
-  
+
 <table id="itemslist">
   <tr>
-    <th>datum</th>
-    <th>kategorie</th>
-    <th>netto</th>
-    <th>brutto</th>
-    <th>beschreibung</th>
-    <th>txid</th>
+    <th>Datum</th>
+    <th>Kategorie</th>
+    <th>Netto</th>
+    <th>Brutto</th>
+    <th>Beschreibung</th>
     <th colspan="3">&nbsp;</th>
   </tr>
 
-<% last_month = nil %>
-<% expenses_grouped_by_quarter(@expenses).each do |quarter, expenses| %>
 
-  <% if params[:year] != 'all' %>
+<% group_by_month(@expenses).each do |month, expenses| %>
+
   <tr>
     <td colspan="9" style="padding-top:10px">
-      <b><%= quarter %>. Quartal</b>
+      <b><%= I18n.l(expenses.first.billed_on, :format => :month_name) %></b>
     </td>
   </tr>
-  
-  <% end %>
   
   <% expenses.each do |expense| %>
     <%= render expense %>

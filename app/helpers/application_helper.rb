@@ -14,5 +14,9 @@ module ApplicationHelper
     Payment::TAX_RATES.each { |rate| options << ["#{rate}%", rate] }
     options
   end
+  
+  def group_by_month(payments)
+    payments.group_by { |p| p.billed_on.month }
+  end
 
 end

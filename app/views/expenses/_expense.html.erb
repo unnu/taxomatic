@@ -4,7 +4,6 @@
   <td class="money"><%=h format_euro(expense.amount_net) %></td>
   <td class="money"><%=h format_euro(expense.amount_gross) %></td>
   <td title="<%=h expense.description %>"><%=h truncate(expense.description, :length => 40) %></td>
-  <td><%=h expense.tax_declaration_id %></td>
 
   <td><%= link_to 'bearbeiten', :action => 'edit', :id => expense %></td>
   <td><%= link_to 'als Vorlage', :action => 'new_from_template', :id => expense %></td>
