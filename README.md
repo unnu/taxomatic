@@ -2,6 +2,9 @@
 
 taxomatic helps you do your monthly tax declaration. It imports your invoices and bank statements, lets you flag expenses easily, and calculates the tax to be paid.
 
+## Screenshots
+
+![image](http://)
 ## Assumptions
 
 1. you pay your taxes in Germany and have to do monthly advances payments for the sales tax.
