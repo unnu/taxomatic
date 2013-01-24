@@ -30,7 +30,7 @@ class ExpenseCategoriesController < ApplicationController
     @expense_category = ExpenseCategory.find(params[:id])
     if @expense_category.update_attributes(params[:expense_category])
       flash[:notice] = 'ExpenseCategory was successfully updated.'
-      redirect_to :action => 'index', :id => @expense_category
+      redirect_to :action => 'index'
     else
       render :action => 'edit'
     end
