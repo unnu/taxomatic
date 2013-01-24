@@ -9,9 +9,11 @@ class TaxController < ApplicationController
   private
   
     def make_date_from_params
-      month = (params[:month] || Date.today.month).to_i
-      year = (params[:year] || Date.today.year).to_i
-      @date = Date.new(year, month)
+      @date = if (params[:month] && params[:year])
+        Date.new(params[:year].to_i, params[:month].to_i)
+      else
+        Date.today - 1.month
+      end
     end
   
 end
