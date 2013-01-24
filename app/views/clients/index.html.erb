@@ -12,7 +12,7 @@
     <td><%=h client.harvest_client_id %></td>
     <td><%= client.is_active? %></td>
     <td><%= link_to 'bearbeiten', :action => 'edit', :id => client %></td>
-    <td><%= link_to 'löschen', { :action => 'destroy', :id => client }, :confirm => 'Are you sure?' %></td>
+    <td><%= link_to 'löschen', client_path(client), :method => :delete, :confirm => 'Are you sure?' %></td>
   </tr>
 <% end %>
 </table>
