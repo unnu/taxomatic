@@ -9,7 +9,8 @@ module Harvest
     end
     
     def initialize(password)
-      @client = Harvest.client('phillipoertel', 'me@phillipoertel.com', password)
+      c = AppConfig['harvest']
+      @client = Harvest.client(c['subdomain'], c['username'], c['password'])
     end
 
     def run!
