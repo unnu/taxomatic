@@ -16,27 +16,3 @@ table#itemslist
       td = line.expense_category.name
       - options = {:class => 'payment_toggler', :data => {:remote => true, :url => update_expense_statement_line_path(line.id), :method => :put}}
       td = check_box_tag("create_payment", "true", line.has_payment?, options)
-
-javascript:
-  jQuery(document).ready(function() {
-
-    var $ = jQuery;
-
-    $(".payment_toggler")
-    
-      .on('click', function(event) {
-        $(this).attr('disabled', true);
-        event.preventDefault();
-      })
-      
-      .on('ajax:success', function() {  
-        var checkbox = $(this);
-        checkbox.attr('disabled', false);
-        checkbox.prop('checked', !checkbox.is(':checked'));
-      })
-      
-      .on('ajax:error', function() {  
-        var checkbox = $(this);
-        checkbox.attr('disabled', false);
-      });
-  });
