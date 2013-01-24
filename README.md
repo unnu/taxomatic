@@ -4,7 +4,14 @@ taxomatic helps you do your monthly tax declaration. It imports your invoices an
 
 ## Screenshots
 
-![image](http://)
+### the tax declaration page
+
+![image](https://raw.github.com/phillipoertel/taxomatic/master/doc/screenshots/tax_declaration.png)
+
+### list of account statements (waiting to be flagged as expenses)
+
+![image](https://raw.github.com/phillipoertel/taxomatic/master/doc/screenshots/statement_lines.png)
+
 ## Assumptions
 
 1. you pay your taxes in Germany and have to do monthly advances payments for the sales tax.
