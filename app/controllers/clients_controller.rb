@@ -5,7 +5,7 @@ class ClientsController < ApplicationController
   end
 
   def list
-    @clients = Client.all
+    @clients = Client.order(:name)
   end
 
   def show
