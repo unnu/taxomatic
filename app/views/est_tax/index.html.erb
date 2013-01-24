@@ -2,7 +2,7 @@
 <h1>Einkommensteuer für <%= @year %></h1>
 
 <p id="year_select">
-  Jahr wählen: <%= year_selector(@year) %>
+  Jahr wählen: <%= year_selector(@year).html_safe %>
 </p>
 
 <%= render :partial => 'invoices' %>
