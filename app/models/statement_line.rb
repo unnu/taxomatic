@@ -12,7 +12,7 @@ class StatementLine < Payment
   validates_presence_of :outbank_unique_id
   
   # ensure a 1:1 relation
-  validates_uniqueness_of :expense_id
+  validates_uniqueness_of :expense_id, :allow_nil => true
   
   # if there is an expense, this line is used in tax calculation etc.
   # can and will be nil in most cases
