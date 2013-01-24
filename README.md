@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/phillipoertel/taxomatic.png)](https://travis-ci.org/phillipoertel/taxomatic)
+[![Build Status](https://api.travis-ci.org/phillipoertel/taxomatic.png?branch=master)](https://travis-ci.org/phillipoertel/taxomatic)
 
 ## Introduction
 
