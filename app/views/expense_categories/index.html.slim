@@ -1,0 +1,21 @@
+p = link_to 'Neue Kategorie', :action => 'new'
+
+table#itemslist
+  tr
+    th Name
+    th Standard-Ust
+    th Standard-Betrag
+    th Abzuschreiben
+    th Privat
+    th colspan="2"
+
+  - @expense_categories.each do |category|
+  
+    tr
+      td = category.name
+      td = category.default_tax
+      td = category.default_amount
+      td = category.amortization?
+      td = category.private?
+      td = link_to 'bearbeiten', :action => 'edit', :id => category
+      td = link_to 'löschen', { :action => 'destroy', :id => category }, :confirm => 'Wirklich löschen'

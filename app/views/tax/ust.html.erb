@@ -1,7 +1,5 @@
 <% @tax_number = "112/256/30560" %>
 
-<h1>Umsatzsteuer-Voranmeldung</h1>
-
 <div id="ust-date-select">
   <%= select_month(@date.month, :add_month_numbers => true, :prompt => "Monat ...") %>
   <%= select_year(@date.year, :end_year => Date.today.year, :prompt => "Jahr ...") %>

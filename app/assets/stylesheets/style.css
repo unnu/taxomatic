@@ -1,9 +1,11 @@
-body { background-color: #fff; color: #333; }
+body { 
+  color: #333; 
+}
 
 body, p, ol, ul, th, td, textarea, input, select {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size:   14px;
-  line-height: 1.3em;
+  font-family: Helvetica, sans-serif;
+  font-size:   13px;
+  line-height: 1.4em;
 }
 
 pre {
@@ -14,8 +16,6 @@ pre {
 
 a,
 a:visited  { color: #666; }
-
-a:hover { color: #fff; background-color:#000; }
 
 a.client {
   color:#000;
@@ -86,6 +86,7 @@ div.progressBar div.background {
 
 h1 {
   margin-top:20px;
+  margin-bottom: 0px;
   font-size:14px;
 }
 h2 {
@@ -106,7 +107,9 @@ th, td {
 }
 th {
   text-align:left;
-  border-bottom:1px solid #666;
+  border-bottom:1px solid #269900;
+  color: #269900;
+  font-weight: bold;
 }
 
 input, textarea {
@@ -131,6 +134,14 @@ select {
 }
 #itemslist td {
   border-top:1px dotted #aaa;
+}
+#itemslist td.nodots {
+  border-top: none;
+}
+#itemslist h3 {
+  font-size: 1em;
+  margin: 0;
+  margin-top: 20px;
 }
 tr.new_year td {
   padding-top:20px;
@@ -157,8 +168,8 @@ div#ustTables {
   margin-top:20px;
 }
 div#tabSelector {
-    position:absolute;
-  	top:0;
+  position:absolute;
+  top:0;
 	left:11px;
 	height:27px;
 	width:550px;
@@ -215,3 +226,30 @@ p#year_select .current {
 tr.amortization td {
 	color:#aaa;
 }
+
+#navigation {
+  margin: 0;
+  width: auto;
+  margin-bottom: 30px;
+}
+#navigation a {
+  width: 80px;
+  text-align: center;
+  display: inline-block;
+  padding: 5px 5px;
+  border: 1px solid #bbb;
+  border-left: none;
+  text-decoration: none;
+}
+#navigation a.first {
+  border-left: 1px solid #bbb;
+}
+#navigation a.current {
+  color: #fff; 
+  background-color: #269900;
+} 
+#navigation a:hover { 
+  color: #fff; 
+  background-color: #80bc6c; 
+}
+

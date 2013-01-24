@@ -1,6 +1,8 @@
 Git::Application.routes.draw do
   
   resources :expenses
+  resources :expense_categories
+  resources :clients
   resources :invoices
   resources :statement_lines do
     put 'update_expense', on: :member

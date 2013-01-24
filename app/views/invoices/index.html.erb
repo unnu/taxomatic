@@ -1,37 +1,25 @@
-<h1>alle Rechnungen</h1>
-
-<p>Für das Jahr: <%= invoices_year_selector.html_safe %></p>
+<p>Jahr: <%= invoices_year_selector.html_safe %></p>
 
 <p><%= link_to 'Neue Rechnung', :action => 'new' %></p>
 
 <table id="itemslist">
   <tr>
-    <th>nummer</th>
-    <th>datum</th>
-    <th>bezahlt</th>
-    <th>kunde</th>
-    <th>netto</th>
-    <th>brutto</th>
-    <th>ust</th>
-    <th>beschreibung</th>
-    <th>txid</th>
-    <th colspan="2">&nbsp;</th>
+    <th>Nummer</th>
+    <th>Rechungsdatum</th>
+    <th>Kunde</th>
+    <th>Netto</th>
+    <th>Beschreibung</th>
   </tr>
 
-<% for invoice in @invoices %>
+<% @invoices.each do |invoice| %>
   <tr>
     <td><%=h invoice.ref_nr %></td>
     <td><%=h I18n.l(invoice.billed_on) %></td>
-    <td><%=h I18n.l(invoice.paid_on) %></td>
     <td><%=h invoice.client.name %></td>
-    <td class="money"><%=h format_euro(invoice.amount_net) %></td>
-    <td class="money"><%=h format_euro(invoice.amount_gross) %></td>
-    <td><%=h invoice.tax %>%</td>
+    <td class="num">
+      <%= number_to_currency(Money.new(invoice.amount_net)) %>
+    </td>
     <td><%=h truncate(invoice.description, :length => 50) %></td>
-    <td><%=h invoice.tax_declaration_id %></td>
-        
-    <td><%= link_to 'bearbeiten', :action => 'edit', :id => invoice %></td>
-    <td><%= link_to 'als Vorlage', :action => 'new_from_template', :id => invoice %></td>
   </tr>
 <% end %>
 </table>

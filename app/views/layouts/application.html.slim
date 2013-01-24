@@ -9,18 +9,18 @@ html
     = csrf_meta_tags
 
   body data-initializer="#{controller.controller_name.camelize}#{controller.action_name.camelize}"
-    - if (flash[:notice] != nil)
+    #navigation
+      - navigation do |item|
+        = item.add "Ausgaben", expenses_path
+        = item.add "Rechnungen", invoices_path
+        = item.add "Buchungen", statement_lines_path
+        = item.add "USt", controller: 'tax', action: 'ust'
+        = item.add "ESt", controller: 'est_tax', action: 'index'
+        = item.add "Kategorien", expense_categories_path
+        = item.add "Kunden", clients_path
+        
+    - if flash[:notice]
       p id="message"
         = flash[:notice]
-        
-    #menu1
-      = link_to("Ausgaben", expenses_path) + " | "
-      = link_to("Rechnungen", invoices_path) + " | "
-      = link_to("Buchungen", statement_lines_path) + " | "
-      = link_to("USt", controller: 'tax', action: 'ust') + " | "
-      = link_to("ESt", controller: 'est_tax', action: 'index') + " | "
-      = link_to("Kategorien", controller: 'expense_categories', action: 'list') + " | "
-      = link_to("Kunden", controller: 'clients', action: 'list')
     
-    #list
-      = yield
+    = yield

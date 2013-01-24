@@ -76,23 +76,21 @@ function highlightRow(e) {
 
     switch (e.type) {
         case 'mouseover':
-        color = '#e5e5e5';
-        isHighlighted = true;
+            color = '#f0f9f0';
+            isHighlighted = true;
         break;
         case 'mouseout':
-        color = '';
-        isHighlighted = false;
+            color = '';
+            isHighlighted = false;
         break;
     }
 
     if (colNames == false) {
         var colNames = new Array();
         ths = document.getElementById('productTableHeader').getElementsByTagName('TH');
-        printfire(ths[10].firstChild.nodeValue);
         for (i=0;i<ths.length;i++) {
             colNames[i] = true
         }
-        printfire(colNames);
     }
 
     // highlight der zeile

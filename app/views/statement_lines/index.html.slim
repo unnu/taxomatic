@@ -1,18 +1,16 @@
-h1 Buchungen
-
 table#itemslist
-  tr
-    th Datum
-    th Betrag
-    th Beschreibung
-    th Kategorie
-    th Ausgabe
-
   - group_by_month(@statement_lines).each do |month, lines|
 
     tr
-      td colspan="9" style="padding-top:10px"
-        b = I18n.l(lines.first.billed_on, :format => :month_name)
+      td.nodots colspan="9"
+        h3 = I18n.l(lines.first.billed_on, :format => :month_year)
+    
+    tr
+      th Datum
+      th.num Betrag
+      th Beschreibung
+      th Kategorie
+      th Ausgabe
     
     - lines.each do |line|
       tr

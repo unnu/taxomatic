@@ -1,14 +1,9 @@
 class ExpenseCategoriesController < ApplicationController
 
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
     @expense_categories = ExpenseCategory.all(:order => 'name')
   end
-
+  
   def show
     @expense_category = ExpenseCategory.find(params[:id])
   end
@@ -21,7 +16,7 @@ class ExpenseCategoriesController < ApplicationController
     @expense_category = ExpenseCategory.new(params[:expense_category])
     if @expense_category.save
       flash[:notice] = 'ExpenseCategory was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to :action => 'index'
     else
       render :action => 'new'
     end
@@ -35,7 +30,7 @@ class ExpenseCategoriesController < ApplicationController
     @expense_category = ExpenseCategory.find(params[:id])
     if @expense_category.update_attributes(params[:expense_category])
       flash[:notice] = 'ExpenseCategory was successfully updated.'
-      redirect_to :action => 'list', :id => @expense_category
+      redirect_to :action => 'index', :id => @expense_category
     else
       render :action => 'edit'
     end
@@ -43,6 +38,6 @@ class ExpenseCategoriesController < ApplicationController
 
   def destroy
     ExpenseCategory.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 end
