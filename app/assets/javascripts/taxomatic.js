@@ -3,10 +3,8 @@ jQuery(document).ready(function() {
     var pageInitializer = jQuery('body').data('initializer');
     funcName = "init" + pageInitializer;    
     if (typeof funcName == 'string' && eval('typeof ' + funcName) == 'function') {
-        console.log("Running page initializer: " + funcName)
         eval(funcName + '(jQuery)');
     } else {
-        console.log("Running globalInit")
         globalInit();
     }
     
