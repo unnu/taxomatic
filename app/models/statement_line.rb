@@ -42,7 +42,7 @@ class StatementLine < Payment
     self.expense = super(
       :billed_on => billed_on, 
       :amount_gross => amount_gross_positive,
-      :amount_net => calculate_amount_net(expense_category.default_tax),
+      :amount_net => TaxCalculator.net_from_gross(amount_gross_positive, expense_category.default_tax),
       :tax => expense_category.default_tax,
       :expense_category => expense_category,
       :description => description
@@ -54,12 +54,9 @@ class StatementLine < Payment
     self.expense.destroy
   end
   
-  def calculate_amount_net(tax_rate)
-    ((Money.new(self.amount_gross_positive) / (100 + tax_rate)) * 100).cents
-  end
-  
+  # this is going to be a payment so the class itself "knows" that this has to be negative
   def amount_gross_positive
-    amount_gross < 0 ? amount_gross * -1 : amount_gross
+    amount_gross.abs
   end
   
 end

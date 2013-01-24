@@ -66,8 +66,4 @@ class StatementLineTest < ActiveSupport::TestCase
     assert_nil line.expense
   end
   
-  def test_calculate_amount_net
-    line = StatementLine.new(valid_attributes)
-    assert_equal 100, line.calculate_amount_net(19)
-  end
 end
