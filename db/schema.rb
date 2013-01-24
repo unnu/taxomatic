@@ -45,9 +45,7 @@ ActiveRecord::Schema.define(:version => 20130123225220) do
     t.integer   "canceled",            :limit => 1,   :default => 0,  :null => false
     t.integer   "tax_declaration_id"
     t.string    "outbank_unique_id"
-    t.integer   "payment_id"
+    t.integer   "expense_id"
   end
-
-  add_index "payments", ["ref_nr"], :name => "ref_nr unique", :unique => true
 
 end

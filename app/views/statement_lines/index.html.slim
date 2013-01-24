@@ -14,5 +14,5 @@ table#itemslist
       td = Money.new(line.amount_gross)
       td = line.description.truncate(60, :separator => ' ')
       td = line.expense_category.name
-      - options = {:class => 'payment_toggler', :data => {:remote => true, :url => update_expense_statement_line_path(line.id), :method => :put}}
-      td = check_box_tag("create_payment", "true", line.has_payment?, options)
+      - options = {:class => 'expense_toggler', :data => {:remote => true, :url => update_expense_statement_line_path(line.id), :method => :put}}
+      td = check_box_tag("create_expense", "true", line.has_expense?, options)

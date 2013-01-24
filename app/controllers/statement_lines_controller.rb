@@ -1,7 +1,7 @@
 class StatementLinesController < ApplicationController
 
   def index
-    @statement_lines = StatementLine.order("billed_on DESC").includes(:payment)
+    @statement_lines = StatementLine.order("billed_on DESC").includes(:expense)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,10 +13,10 @@ class StatementLinesController < ApplicationController
   # making it (in)visible in tax declarations 
   def update_expense
     line = StatementLine.find(params[:id])
-    if params[:create_payment]
-      line.create_payment!
+    if params[:create_expense]
+      line.create_expense!
     else
-      line.delete_payment!
+      line.destroy_expense!
     end
     respond_to do |format|
       format.json { render :json => {}, :status => 201 }

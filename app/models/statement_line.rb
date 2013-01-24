@@ -5,15 +5,18 @@
 class StatementLine < Payment
   
   # this is a must, because the tax rate and thereby the amount_net depends on it.
-  # amount_net is calculated when the StatementLine is converted into a payment
+  # amount_net is calculated when the StatementLine is converted into an expense
   validates_numericality_of :expense_category_id
   
   # this is a (hopefully) unique identifier for this record's source line in outbank
   validates_presence_of :outbank_unique_id
   
-  # if there is a payment, this line is used in tax calculation etc.
+  # ensure a 1:1 relation
+  validates_uniqueness_of :expense_id
+  
+  # if there is an expense, this line is used in tax calculation etc.
   # can and will be nil in most cases
-  belongs_to :payment
+  belongs_to :expense, :class_name => 'Expense'
   
   class << self
     def create_from_outbank_line!(line)
@@ -30,16 +33,33 @@ class StatementLine < Payment
     end
   end
   
-  def has_payment?
-    self.payment.present?
+  def has_expense?
+    self.expense.present?
   end
   
-  def create_payment!
-    logger.debug("create_payment")
+  def create_expense!
+    # transaction do ...
+    self.expense = super(
+      :billed_on => billed_on, 
+      :amount_gross => amount_gross_positive,
+      :amount_net => calculate_amount_net(expense_category.default_tax),
+      :tax => expense_category.default_tax,
+      :expense_category => expense_category,
+      :description => description
+    )
+    save!
   end
   
-  def delete_payment!
-    payment.destroy
+  def destroy_expense!
+    self.expense.destroy
+  end
+  
+  def calculate_amount_net(tax_rate)
+    ((Money.new(self.amount_gross) / (100 + tax_rate)) * 100).cents
+  end
+  
+  def amount_gross_positive
+    amount_gross < 0 ? amount_gross * -1 : amount_gross
   end
   
 end

@@ -29,6 +29,6 @@ class PaymentTest < Test::Unit::TestCase
       :tax => 19
     )
     assert !payment.valid? 
-    assert_equal ["Die Berechnung von Netto-, Bruttobetrag und USt stimmt nicht."], payment.errors[:base]
+    assert_match /\ADie Berechnung von Netto-, Bruttobetrag und USt stimmt nicht/, payment.errors[:base].first
   end
 end

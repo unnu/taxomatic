@@ -2,7 +2,7 @@ function initStatementLinesIndex($) {
 
     initHighlightRows(document.getElementById('itemslist'));
 
-    $(".payment_toggler")
+    $(".expense_toggler")
 
         .on('click', function(event) {
             $(this).attr('disabled', true);
