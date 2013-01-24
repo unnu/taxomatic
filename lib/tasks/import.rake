@@ -1,4 +1,4 @@
-task :import => ["import:invoices", "import:statement"]
+task :import => ["backup", "import:invoices", "import:statement"]
 
 namespace :import do
   
