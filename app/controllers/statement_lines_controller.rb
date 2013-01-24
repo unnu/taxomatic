@@ -19,7 +19,7 @@ class StatementLinesController < ApplicationController
       line.destroy_expense!
     end
     respond_to do |format|
-      format.json { render :json => {}, :status => 201 }
+      format.json { render :json => {}, :status => 200 }
     end
   end
   
