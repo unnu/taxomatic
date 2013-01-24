@@ -7,7 +7,7 @@ class Payment < ActiveRecord::Base
   
   validates_presence_of :amount_gross, :billed_on
   validates_numericality_of :amount_gross
-  validates_uniqueness_of :ref_nr, :scope => :type
+  #validates_uniqueness_of :ref_nr, :scope => :type
   validate :amounts_and_tax_calculation_must_be_correct
   validate :dates_must_be_plausible
 
@@ -53,10 +53,12 @@ class Payment < ActiveRecord::Base
   
     def amounts_and_tax_calculation_must_be_correct
       return if [amount_gross, amount_net, tax].any? { |val| val == nil }
-      amount_tax = (amount_net * (tax.to_f/100))
-      expected_amount_gross = (amount_net + amount_tax).round
-      if (amount_gross != expected_amount_gross)
-        errors[:base] << "Die Berechnung von Netto-, Bruttobetrag und USt stimmt nicht: (Netto: #{amount_net}, Steuersatz: #{tax}, Steuer: #{amount_tax}, Brutto: #{amount_gross}). Erwartet: #{expected_amount_gross}"
+      amount_tax = (Money.new(amount_net) * tax) / 100
+      expected_amount_gross = (Money.new(amount_net) + amount_tax)
+      if (Money.new(amount_gross) != expected_amount_gross)
+        msg = "Die Berechnung von Netto-, Bruttobetrag und USt stimmt nicht: "
+        msg << "amount_net: #{Money.new(amount_net)}, tax: #{tax}, amount_tax: #{amount_tax}, amount_gross: #{Money.new(amount_gross)}). expected_amount_gross: #{expected_amount_gross}"
+        errors[:base] << msg
       end
     end
     
