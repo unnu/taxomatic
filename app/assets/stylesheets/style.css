@@ -133,7 +133,7 @@ select {
   background-color:#e0eddc;
 }
 #itemslist td {
-  border-top:1px dotted #aaa;
+  border-top:1px solid #e9e9e9;
 }
 #itemslist td.nodots {
   border-top: none;
