@@ -1,6 +1,6 @@
 class ExpensesController < ApplicationController
 
-  before_filter :form_common, :except => [:index, :list, :show]
+  before_filter :form_common, :except => [:index, :show]
   
   def form_common
     @expense_categories = get_expense_categories
@@ -58,7 +58,7 @@ class ExpensesController < ApplicationController
     if @expense.update_attributes(params[:expense])
       flash[:notice] = 'Expense was successfully updated.'
       flash[:highlight_row] = params[:id]
-      redirect_to :action => 'list', :id => @expense
+      redirect_to :action => 'index', :id => @expense
     else
       render :action => 'edit'
     end
