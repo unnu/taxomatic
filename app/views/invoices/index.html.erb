@@ -9,6 +9,7 @@
     <th>Kunde</th>
     <th>Netto</th>
     <th>Beschreibung</th>
+    <th>&nbsp;</th>
   </tr>
 
 <% @invoices.each do |invoice| %>
@@ -20,6 +21,7 @@
       <%= number_to_currency(Money.new(invoice.amount_net)) %>
     </td>
     <td><%=h truncate(invoice.description, :length => 50) %></td>
+    <td><%=h link_to('Bearbeiten', edit_invoice_path(invoice)) %></td>
   </tr>
 <% end %>
 </table>
