@@ -41,7 +41,7 @@ You can also enter expenses and invoices by hand, I did that for a long time and
 ## Importing invoices from Harvest
 
 1. Before you start, ensure that all clients of your invoices exist in taxomatic. The matching is done by the harvest_client id.
-1. Configure the harvest client access data in app/models/invoice_import.rb.
+2. Ensure the harvest client is configured in config/taxomatic.yml
 3. Run `rake import:invoices`
 
 On the next export, taxomatic will be careful not to import invoices twice.
