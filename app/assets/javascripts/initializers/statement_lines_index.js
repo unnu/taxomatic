@@ -1,7 +1,5 @@
 function initStatementLinesIndex($) {
 
-    initHighlightRows(document.getElementById('itemslist'));
-
     $(".expense_toggler")
 
         .on('click', function(event) {

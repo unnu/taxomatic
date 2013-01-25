@@ -1,7 +1,5 @@
 function initTaxUst($) {
 
-    initHighlightRows(document.getElementById('itemslist'));
-
     Slides = new TabCtrl('tabContainer');
 
     $(document).on('change', '#ust-date-select select', function() {
