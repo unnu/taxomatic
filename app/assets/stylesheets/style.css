@@ -116,6 +116,10 @@ input, textarea {
   border:1px solid #bbb;
   width:300px;
 }
+input[type=radio] {
+  border: none;
+  width:auto;
+}
 textarea {
   height:50px;
 }
@@ -146,11 +150,6 @@ tr.border_top td {
 input[type=checkbox] {
   width:auto;
 }
-/* right align */
-td.num, th.num {
-  text-align:right;
-}
-
 /* tabselect bei ust */
 
 div#ustTables {

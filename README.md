@@ -68,9 +68,10 @@ I don't use the ESt (income tax) module anymore, don't use it without reviewing 
 
 ## Todos
 
+* fix error messages on validation
 * Write acceptance tests for a few variations of tax declarations.
 * Ensure that a StatementLine can only have one expenses (uniqueness of payments.expense_id)
 * Allow adapting the USt-rate per statement line directly in the USt interface
 * Fix row highlighter in /tax/ust > Ausgaben, it doesn't work
-* Remove the Prototype library and adapt the JavaScript code to use the (also present) jQuery lib.
+* Remove the Prototype library and adapt the JavaScript code to use the (also present) jQuery lib. Then [LiveReload](http://livereload.com/) will also work.
 * Modernize deprecated/old school Ruby/Rails code, convert .erb templates to .slim.

@@ -1,19 +1,25 @@
 #itemslist {
-  width: 100%;
+  border-collapse: collapse;
 }
 
-#itemslist.autowidth {
-  width: auto;
-}
-
+#itemslist th, 
 #itemslist td {
-  border-top:1px solid #e9e9e9;
+  padding:2px;
+  padding-right:10px;
+  white-space:nowrap;
 }
+#itemslist tbody td {
+  border-top:1px solid #e9e9e9;
+123
+}
+
 #itemslist td.nodots {
   border-top: none;
 }
-#itemslist th.taxcol,
-#itemslist td.taxcol {
+#itemslist td.description {
+  cursor: pointer;
+}
+#itemslist .taxcol {
   padding: 2px 0px;
   text-align: center;
 }
@@ -28,3 +34,15 @@
 {
   background: #f4f4f4;
 }
+
+#itemslist .num {
+  text-align:right;
+}
+
+th {
+  text-align:left;
+  border-bottom:1px solid #269900;
+  color: #269900;
+  font-weight: bold;
+}
+

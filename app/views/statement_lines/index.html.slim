@@ -21,7 +21,7 @@ table#itemslist
         tr
           td = I18n.l(line.billed_on)
           td.num = number_to_currency(Money.new(line.amount_gross))
-          td = line.description.truncate(80, :separator => ' ')
+          td.description = line.description.truncate(80, :separator => ' ')
           td = line.expense_category.name
           td.taxcol = radio_button('foo', 'bar', 'baz')
           td.taxcol = radio_button('foo', 'bar', 'baz')
