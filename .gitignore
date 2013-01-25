@@ -10,4 +10,3 @@
 /data/backups/*.csv
 
 /config/taxomatic.yml
-/config/database.yml
