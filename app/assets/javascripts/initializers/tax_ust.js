@@ -1,6 +1,6 @@
 function initTaxUst($) {
 
-    Slides = new TabCtrl('tabContainer');
+    $('#tabContainer').tabs();
 
     $(document).on('change', '#ust-date-select select', function() {
         var month = jQuery('#ust-date-select select#date_month').val();
