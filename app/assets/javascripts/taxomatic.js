@@ -1,3 +1,6 @@
+/** check if there is a global initializer function for the current page and run it.
+ * if there isn't, run globalInit() instead.
+ */
 jQuery(document).ready(function() {    
 
     var pageInitializer = jQuery('body').data('initializer');
@@ -11,9 +14,6 @@ jQuery(document).ready(function() {
 })
 
 function globalInit() {
-    if (document.getElementById('itemslist')) {
-        initHighlightRows(document.getElementById('itemslist'));
-    }
     focusForm();
 }
 
