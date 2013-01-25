@@ -1,4 +1,4 @@
-<%= error_messages_for @expense_category %>
+<%= error_messages_for(@expense_category).html_safe %>
 
 <p><label for="expense_category_name">Name</label><br/>
 <%= text_field 'expense_category', 'name'  %></p>
