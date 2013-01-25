@@ -12,9 +12,6 @@ table#itemslist
           th.num Betrag
           th Beschreibung
           th Kategorie
-          th.taxcol 0
-          th.taxcol 7
-          th 19
           th Ausgabe
       
       - lines.each do |line|
@@ -23,9 +20,6 @@ table#itemslist
           td.num = number_to_currency(Money.new(line.amount_gross))
           td.description title="#{line.description}" = line.description.truncate(80, :separator => ' ')
           td = line.expense_category.name
-          td.taxcol = radio_button('foo', 'bar', 'baz')
-          td.taxcol = radio_button('foo', 'bar', 'baz')
-          td = radio_button('foo', 'bar', 'baz')
           td = expense_toggle_check_box(line)
         
 p Zeige #{@statement_lines.count} Buchung(en).

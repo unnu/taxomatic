@@ -19,10 +19,6 @@
 #itemslist td.description {
   cursor: pointer;
 }
-#itemslist .taxcol {
-  padding: 2px 0px;
-  text-align: center;
-}
 
 #itemslist h3 {
   font-size: 1em;
