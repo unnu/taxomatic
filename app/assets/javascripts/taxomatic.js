@@ -1,12 +1,12 @@
 /** check if there is a global initializer function for the current page and run it.
  * if there isn't, run globalInit() instead.
  */
-jQuery(document).ready(function() {    
+$(document).ready(function() {    
 
-    var pageInitializer = jQuery('body').data('initializer');
+    var pageInitializer = $('body').data('initializer');
     funcName = "init" + pageInitializer;    
     if (typeof funcName == 'string' && eval('typeof ' + funcName) == 'function') {
-        eval(funcName + '(jQuery)');
+        eval(funcName + '($)');
     } else {
         globalInit();
     }
