@@ -195,7 +195,6 @@ div#tabSelector a {
 div#tabSelector a:hover, 
 div#tabSelector a.selected { 
 	height:19px;
-	color: #000;
 	border:1px solid #000;
 	border-bottom:1px solid #fff;
 	background-color:#fff;
