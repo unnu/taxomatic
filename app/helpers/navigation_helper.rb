@@ -6,18 +6,14 @@ module NavigationHelper
   
   class NavigationBuilder
     
-    attr_reader :helper, :first_item_rendered
+    attr_reader :helper
     
     def initialize(helper_context)
       @helper = helper_context
     end
     
     def add(title, path, link_options = {})
-      classes = []
-      classes << 'first' if !first_item_rendered
-      @first_item_rendered = true
-      classes << 'current' if helper.current_page?(path)
-      helper.link_to(title, path, link_options.merge(:class => classes))
+      helper.active_link_to(title, path, link_options)
     end
     
   end

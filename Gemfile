@@ -19,3 +19,4 @@ group :test do
 end
 
 gem 'uglifier'
+gem 'active_link_to'
