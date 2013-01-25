@@ -14,5 +14,3 @@ production:
 test:
   << : *common
   database: taxomatic_test
-  
-# Hello World
