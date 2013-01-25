@@ -1,4 +1,4 @@
 language: ruby
 rvm:
   - 1.9.3
-script: "RUBYOPT=-Ku RAILS_ENV=test rake db:create && rake db:schema:load && rake"
+script: "export RUBYOPT=-Ku; export RAILS_ENV=test; rake db:create && rake db:schema:load && rake"
