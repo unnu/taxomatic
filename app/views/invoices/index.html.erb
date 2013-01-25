@@ -9,7 +9,7 @@
     <th>Kunde</th>
     <th>Netto</th>
     <th>Beschreibung</th>
-    <th>&nbsp;</th>
+    <th colspan="2">&nbsp;</th>
   </tr>
 
 <% @invoices.each do |invoice| %>
@@ -22,6 +22,7 @@
     </td>
     <td><%=h truncate(invoice.description, :length => 50) %></td>
     <td><%=h link_to('Bearbeiten', edit_invoice_path(invoice)) %></td>
+    <td><%=h link_to('Löschen', invoice_path(invoice), :method => :delete, :confirm => 'Wirklich löschen?') %></td>
   </tr>
 <% end %>
 </table>

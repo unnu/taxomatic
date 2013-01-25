@@ -1,6 +1,6 @@
 class InvoicesController < ApplicationController
 
-  before_filter :form_common, :except => [:index, :list, :show]
+  before_filter :form_common, :except => [:index, :show]
   
   def index
     params[:year] = Time.now.year unless params[:year]
@@ -56,7 +56,7 @@ class InvoicesController < ApplicationController
 
   def destroy
     Invoice.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'index'
   end
 
   private
