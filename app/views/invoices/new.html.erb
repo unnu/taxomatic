@@ -1,6 +1,6 @@
 <h1>Neue Rechnung</h1>
 
-<%= form_tag :action => 'create' do %>
+<%= form_tag({:action => 'create'}, {'data-with-tax' => true}) do %>
   <%= render :partial => 'form' %>
   <%= submit_tag "Erstellen" %>
 <% end %>

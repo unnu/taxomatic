@@ -1,6 +1,6 @@
 <h1>Bearbeite Ausgabe</h1>
 
-<%= form_tag expense_path(@expense.id), {:id => @expense, :method => :put} do |form| %>
+<%= form_for(@expense, :html => {data: {:'with-tax' => true}}) do |form| %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Speichern' %>
 <% end %>
