@@ -14,4 +14,8 @@
 //= require jquery_ujs
 //= require_tree ../../../vendor/assets/javascripts/.
 //= require_tree ../../../lib/assets/javascripts/.
+//
+// taxomatic.js initializes the application, so it needs to load first. 
+//
+//= require taxomatic
 //= require_tree .

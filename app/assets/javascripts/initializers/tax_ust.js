@@ -1,4 +1,4 @@
-function initTaxUst($) {
+Initializers.TaxUst = function($) {
 
     $('#tabContainer').tabs();
 

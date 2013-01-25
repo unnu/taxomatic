@@ -1,4 +1,4 @@
-function initStatementLinesIndex($) {
+Initializers.StatementLinesIndex = function($) {
 
     $(".expense_toggler")
 

@@ -1,27 +1,16 @@
+var Initializers = {};
+
 /** check if there is a global initializer function for the current page and run it.
  * if there isn't, run globalInit() instead.
  */
-$(document).ready(function() {    
-
+$(document).ready(function() {
     var pageInitializer = $('body').data('initializer');
-    funcName = "init" + pageInitializer;    
-    if (typeof funcName == 'string' && eval('typeof ' + funcName) == 'function') {
-        eval(funcName + '($)');
+    if (typeof Initializers[pageInitializer] == 'function') {
+        Initializers[pageInitializer]($);
     } else {
-        globalInit();
+        Initializers.Default($);
     }
-    
 })
-
-function globalInit() {
-    focusForm();
-}
-
-function focusForm() {  
-    if (document.forms[0]) {
-        document.forms[0].elements[0].focus();
-    }
-}
 
 function calcGross(net) {
     tax = document.getElementById('tax').value
